@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Item } from "@/types/item";
 import { Forward, Pencil, Delete, CheckCheck, CircleCheckBig, ListX } from 'lucide-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -19,9 +19,16 @@ export const List = () => {
     handleSubmit,
     register,
     setValue,
+    setFocus,
     formState: { errors }
 
   } = useForm<Inputs>();
+
+  setFocus("text");
+    useEffect(() => {
+      setFocus("text"); // Define o foco automaticamente no campo "text"
+    }, [setFocus]);
+  
 
   const [list, setList] = useState<ItemList[]>([]);
   const [editText, setEditText] = useState(false);
@@ -104,7 +111,7 @@ export const List = () => {
 
       <div className="fixed right-0 left-0 top-0 flex flex-col items-center justify-center z-0 bg-input p-8">
 
-        <h1 className="font-bold text-3xl flex items-center">To-do List<CircleCheckBig /></h1>
+        <h1 className="font-bold text-3xl flex items-center">Lista de tarefas<CircleCheckBig /></h1>
         {editText &&
           <div className="flex flex-col w-full max-w-6xl">
             <form
@@ -138,7 +145,7 @@ export const List = () => {
 
               <input
                 {...register('text', { required: true, maxLength: 80 })}
-                placeholder="Enter your text"
+                placeholder="Digite seu texto"
                 className="rounded-tl-md rounded-bl-md w-full p-3 outline-none bg-input hover:opacity-80 "
               />
 
@@ -193,7 +200,7 @@ export const List = () => {
       </div>
 
       <Button onClick={() => setList([])} className="fixed left-2 flex items-center bottom-16 bg-input rounded-full z-50 hover:text-background">
-        <p className="hidden md:flex">Clear List</p><ListX className="" /> </Button>
+        <p className="hidden md:flex">Limpar lista</p><ListX className="" /> </Button>
 
     </div >
 

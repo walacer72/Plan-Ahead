@@ -40,9 +40,9 @@ export const ListHome = () => {
 
   return (
     <div className="relative flex-col justify-center items-center z-0">
-      <h1 className={`fixed top-0 right-0 left-0 bg-input z-0 h-32 flex justify-end p-4 px-8 items-center lg:justify-center text-3xl font-bold lg:text-5xl gap-1`}>
+      <h1 className={`fixed top-0 right-0 left-0 bg-input z-0 h-32 flex justify-end p-4 px-8 items-center lg:justify-center text-3xl font-bold lg:text-4xl gap-1`}>
 
-        <p>Market List</p>
+        <p>Lista de Mercado</p>
         <ShoppingBag className="size-6 mb-1 lg:size-8 lg:m-0" />
       </h1>
 

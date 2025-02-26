@@ -1,14 +1,13 @@
 'use client'
 
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Forward, ListX } from 'lucide-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useList, ValueListContext } from "@/contexts/valueListCpx";
+import { useList } from "@/contexts/valueListCpx";
 import { Input } from "../ui/input";
 import { ItemList } from "./itemList";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/menuSize";
 import { QtdList } from "./qtdList";
-import { Button } from "../ui/button";
 
 type Inputs = {
   text: string;
@@ -89,7 +88,7 @@ export const ListEdit = () => {
 
                   <Input
                     {...register('newText', { required: true, maxLength: 100 })}
-                    placeholder="Enter your text"
+                    placeholder="Digite seu texto"
                     className="w-full rounded-full rounded-bl-full bg-input hover:opacity-80"
                   />
 
@@ -180,7 +179,7 @@ export const ListEdit = () => {
 
                   <Input
                     {...register('text', { required: true, maxLength: 100 })}
-                    placeholder="Enter your text"
+                    placeholder="Digite seu texto"
                     className="w-full rounded-full rounded-bl-full bg-input hover:opacity-80"
                   />
 

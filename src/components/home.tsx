@@ -15,7 +15,7 @@ export const HomePage = () => {
       <div className="absolute top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center md:flex-row md:justify-between md:items-stretch gap-2 
       bg-gradient-to-l from-blue-400 to-black/80 shadow-2xl">
 
-        <div className="w-full p-8 md:p-0 md:w-4/6 flex flex-col justify-center text-white z-50">
+        <div className="w-full p-8 md:p-0 md:w-3/5 flex flex-col justify-center text-white z-50">
           <h1 className="w-full max-w-3xl text-center md:pl-20 md:text-start text-gray-200">Chega de esquecimentos! Conheça o </h1>
 
           <div className="flex flex-col md:flex-row justify-center items-center m-0">
@@ -25,13 +25,13 @@ export const HomePage = () => {
               <button
 
                 className="button"
-                onClick={() => router.push('./listTarefas')}>To-do List</button>
+                onClick={() => router.push('./listTarefas')}>Lista de tarefas</button>
               <button
                 className="button"
-                onClick={() => router.push('./listMercado')}>Market List</button>
+                onClick={() => router.push('./listMercado')}>Lista de Mercado</button>
               <button
                 className="button"
-                onClick={() => router.push('./listAgenda')}>Monthly Calendar</button>
+                onClick={() => router.push('./listAgenda')}>Planeje seu Dia</button>
             </div>
           </div>
           <p className="w-full md:pl-20 max-w-2xl text-center md:text-start mt-8 md:mt-24 text-gray-200">Organize suas compras e tarefas do dia a dia de forma simples e eficiente! Com o Plan Ahead, você tem um assistente inteligente na palma da mão para planejar suas listas de mercado e suas tarefas diárias.</p>
