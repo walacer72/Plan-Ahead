@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Forward, ListX } from 'lucide-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useList, ValueListContext } from "@/contexts/valueListCpx";
@@ -29,9 +29,11 @@ export const ListEdit = () => {
     handleSubmit,
     register,
     setValue,
+    setFocus,
     formState: { errors }
 
   } = useForm<Inputs>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const {
     handleAddText, handleUpdateTextInput, modalReturn, setEditText,
@@ -49,8 +51,13 @@ export const ListEdit = () => {
       setValue('value', 0.00);
 
     }
+    
   }
 
+  setFocus("text");
+  useEffect(() => {
+    setFocus("text"); // Define o foco automaticamente no campo "text"
+  }, [setFocus]);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
 
@@ -64,7 +71,7 @@ export const ListEdit = () => {
     }
 
   }
-  
+
 
   return (
     <div className={`fixed right-0 left-0 -bottom-28 ${modalList} transition-all duration-500 ease-in-out z-50 bg-background rounded-t-2xl pb-44 shadow-lg shadow-slate-950`}>
