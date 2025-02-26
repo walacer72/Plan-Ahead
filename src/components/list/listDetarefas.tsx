@@ -115,7 +115,7 @@ export const List = () => {
         {editText &&
           <div className="flex flex-col w-full max-w-6xl">
             <form
-              className="flex justify-between items-center w-full max-w-6xl border border-blue-500 animate-pulse bg-input rounded-md my-4 "
+              className="flex justify-between items-center w-full max-w-6xl border border-blue-500 animate-pulse bg-input rounded-md mt-4 mb-2"
               onSubmit={handleSubmit(onSubmit)}>
 
               <input
@@ -129,7 +129,7 @@ export const List = () => {
               </button>
 
             </form>
-            <div className="h-6 text-slate-400">
+            <div className="h-4 text-slate-400">
               {errors.newText?.type === 'required' && <p>Este campo precisa ser preenchido!</p>}
               {errors.newText?.type === 'maxLength' && <p>Máximo de 80 caracteres</p>}
             </div>
@@ -140,7 +140,7 @@ export const List = () => {
         {!editText &&
           <div className="flex flex-col w-full max-w-6xl">
             <form
-              className="flex items-center w-full max-w-6xl border bg-input rounded-md my-4 shadow-xl"
+              className="flex items-center w-full max-w-6xl border bg-input rounded-md mt-4 mb-2 shadow-xl"
               onSubmit={handleSubmit(handleFormSubmit)}>
 
               <input
@@ -154,7 +154,7 @@ export const List = () => {
               </button>
 
             </form>
-            <div className="h-6 text-slate-400">
+            <div className="h-4 text-slate-400">
               {errors.text?.type === 'required' && <p>Este campo precisa ser preenchido!</p>}
               {errors.text?.type === 'maxLength' && <p>Máximo de 80 caracteres</p>}
             </div>
@@ -163,7 +163,7 @@ export const List = () => {
 
       </div>
 
-      <div className="fixed left-0 right-0 bottom-2 px-2 top-40 flex justify-start items-start bg-background z-40 rounded-t-3xl shadow-2xl shadow-black mb-12 pb-8">
+      <div className="fixed left-0 right-0 bottom-2 px-2 top-44 flex justify-start items-start bg-background z-40 rounded-t-3xl shadow-2xl shadow-black mb-12 pb-8">
 
         <div className="w-full h-full flex flex-col items-center mt-4  overflow-y-auto px-4">
 
