@@ -36,14 +36,15 @@ export const ListHome = () => {
   const handleReturnButtonModal = () => {
     setModalReturn('-left-48');
     setModalList('h-0');
+
   }
 
   return (
     <div className="relative flex-col justify-center items-center z-0">
-      <h1 className={`fixed top-0 right-0 left-0 bg-input z-0 h-32 flex justify-end p-4 px-8 items-center lg:justify-center text-3xl font-bold lg:text-4xl gap-1`}>
+      <h1 className={`fixed top-0 right-0 left-0 bg-input z-0 h-32 flex justify-end p-4 px-8 items-center lg:justify-center text-xl font-bold lg:text-4xl gap-1`}>
 
         <p>Lista de Mercado</p>
-        <ShoppingBag className="size-6 mb-1 lg:size-8 lg:m-0" />
+        <ShoppingBag className="size-5 lg:size-8 lg:m-0" />
       </h1>
 
       <div className="fixed left-0 right-0 bottom-2 py-4 px-2 top-28 flex justify-center bg-background z-40 rounded-t-3xl shadow-2xl mb-12">

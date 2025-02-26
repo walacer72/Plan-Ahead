@@ -199,7 +199,7 @@ export const List = () => {
         </div>
       </div>
 
-      <Button onClick={() => setList([])} className="fixed left-2 flex items-center bottom-16 bg-input rounded-full z-50 hover:text-background">
+      <Button onClick={() => setList([])} className="fixed left-4 flex items-center bottom-20 bg-input rounded-full z-50 hover:text-background">
         <p className="hidden md:flex">Limpar lista</p><ListX className="" /> </Button>
 
     </div >
