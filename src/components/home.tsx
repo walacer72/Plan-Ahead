@@ -15,11 +15,12 @@ export const HomePage = () => {
       <div className="absolute top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center md:flex-row md:justify-between md:items-stretch gap-2 
       bg-gradient-to-l from-blue-400 to-black/80 shadow-2xl">
 
-        <div className="w-full p-8 md:p-0 md:w-3/5 flex flex-col justify-center text-white z-50">
+        <div className="w-full p-4 md:p-0 md:w-3/5 flex flex-col justify-center text-white z-50">
           <h1 className="w-full max-w-3xl text-center md:pl-20 md:text-start text-gray-200">Chega de esquecimentos! Conheça o </h1>
 
           <div className="flex flex-col md:flex-row justify-center items-center m-0">
-            <h1 className="flex text-4xl my-4 md:text-7xl items-center justify-center p-10 md:p-12 border-t border-b border-black ">Plan Ahead <CircleCheckBig size={40} /></h1>
+            <h1 className="flex text-4xl my-4 md:text-7xl items-center justify-center p-10 md:p-12 border-t-2 border-b-2 border-black ">Plan Ahead <CircleCheckBig size={40} />
+            </h1>
 
             <div className="flex flex-col gap-4 md:gap-8">
               <button
