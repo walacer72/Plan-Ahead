@@ -32,7 +32,7 @@ export const ListEdit = () => {
     formState: { errors }
 
   } = useForm<Inputs>();
-  const inputRef = useRef<HTMLInputElement>(null);
+  
 
   const {
     handleAddText, handleUpdateTextInput, modalReturn, setEditText,
@@ -144,6 +144,7 @@ export const ListEdit = () => {
                       <p>R$</p>
                     </div>
                     <Input
+                    
                       {...register('newValue', { required: true, min: 0.01 })}
                       placeholder="0,00"
                       className="w-16 text-sm rounded-full rounded-bl-full bg-input hover:opacity-80"
@@ -188,7 +189,7 @@ export const ListEdit = () => {
                 <div className="flex gap-2 ml-4 my-1">
                   <label className="flex w-full items-center border rounded-full
 
-                  pl-4 pr-0 
+                  pl-4 pr-0
                   sm:pl-8
                   md:pl-12 md:pr-2
                   lg:pl-16 lg:pr-4">
@@ -231,9 +232,9 @@ export const ListEdit = () => {
                   lg:pl-16 lg:pr-10">
 
                     <div className="flex gap-1 pl-2">
-                      <div className="">preço:</div>
+                      <div className="hidden md:flex">preço:</div>
                       <p>R$</p>
-                    </div>
+                    </div>  
                     <Input
                       {...register('value', { required: true, min: 0.01 })}
                       placeholder="0,00"

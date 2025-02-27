@@ -21,26 +21,26 @@ export const HomePage = () => {
           <div className="flex flex-col md:flex-row justify-center items-center m-0">
             <h1 className="flex text-4xl my-4 md:text-7xl items-center justify-center p-10 md:p-12 border-t border-b border-black ">Plan Ahead <CircleCheckBig size={40} /></h1>
 
-            <div className="flex flex-col gap-6 md:gap-8">
+            <div className="flex flex-col gap-4 md:gap-8">
               <button
 
-                className="button"
+                className="button rounded-md"
                 onClick={() => router.push('./listTarefas')}>Lista de tarefas</button>
               <button
-                className="button"
+                className="button rounded-md"
                 onClick={() => router.push('./listMercado')}>Lista de Mercado</button>
               <button
-                className="button"
+                className="button rounded-md"
                 onClick={() => router.push('./listAgenda')}>Planeje seu Dia</button>
             </div>
           </div>
-          <p className="w-full md:pl-20 max-w-2xl text-center md:text-start mt-8 md:mt-24 text-gray-200">Organize suas compras e tarefas do dia a dia de forma simples e eficiente! Com o Plan Ahead, você tem um assistente inteligente na palma da mão para planejar suas listas de mercado e suas tarefas diárias.</p>
+          <p className="w-full md:pl-20 max-w-2xl text-center md:text-start mt-6 md:mt-24 text-gray-200">Organize suas compras e tarefas do dia a dia de forma simples e eficiente! Com o Plan Ahead, você tem um assistente inteligente na palma da mão para planejar suas listas de mercado e suas tarefas diárias.</p>
         </div>
 
 
         <div className="absolute w-full md:w-3/6 -right-72 top-80 md:-right-72 bg-black/80 transform rotate-45 p-4 rounded-l-3xl -bottom-36 md:bottom-10 md:top-0 z-30 shadow-2xl shadow-black">
 
-          <img className="absolute right-52 top-52 md:right-72  md:top-40 transform -rotate-45 z-50 w-3/5 md:w-4/6 h-full object-contain" src="/galeria/print macbook.png" alt="" />
+          <img className="absolute right-52 top-48 md:right-72  md:top-40 transform -rotate-45 z-50 w-3/5 md:w-4/6 h-full object-contain" src="/galeria/print macbook.png" alt="" />
 
           <img className="absolute bottom-20 right-60 md:top-44 md:right-64 transform -rotate-45 z-50 w-24 md:w-44 h-auto object-contain" src="/galeria/print smart.png" alt="" />
 
