@@ -42,7 +42,7 @@ export const SecondList0 = () => {
 
 
   return (
-    <div className="w-full h-auto flex flex-col justify-between border p-4 rounded-3xl bg-input">
+    <div className={`w-full h-auto flex flex-col justify-between ${list0.length > 0 ?'border border-blue-500': 'border'} p-4 rounded-3xl bg-input`}>
       <h1>
         {!showInput && 
           <div className="flex justify-between items-center">

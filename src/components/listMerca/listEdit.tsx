@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Forward, ListX } from 'lucide-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useList } from "@/contexts/valueListCpx";
@@ -8,6 +8,8 @@ import { Input } from "../ui/input";
 import { ItemList } from "./itemList";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/menuSize";
 import { QtdList } from "./qtdList";
+import InputMask from 'react-input-mask';
+
 
 type Inputs = {
   text: string;
@@ -32,7 +34,7 @@ export const ListEdit = () => {
     formState: { errors }
 
   } = useForm<Inputs>();
-  
+
 
   const {
     handleAddText, handleUpdateTextInput, modalReturn, setEditText,
@@ -41,19 +43,21 @@ export const ListEdit = () => {
 
   } = useList();
 
+  const [formattedValue, setFormattedValue] = useState("");
+
   const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
 
     if (data.text.trim() !== '') {
       handleAddText(data.text, data.quantity, data.opcao, data.value)
       setValue('text', '');
       setValue('quantity', 0);
-      setValue('value', 0.00);
-
+      setFormattedValue('');
+      setFocus("text");
     }
-    
+
   }
 
-  setFocus("text");
+
   useEffect(() => {
     setFocus("text"); // Define o foco automaticamente no campo "text"
   }, [setFocus]);
@@ -135,19 +139,21 @@ export const ListEdit = () => {
                   </label>
                   <label className="flex w-full items-center border rounded-full text-sm
 
-                pl-3 pr-0
-                sm:pl-8 sm:pr-4 
-                lg:pl-16 lg:pr-10">
+                  pl-2 pr-0
+                  sm:pl-8 sm:pr-4 
+                  lg:pl-10 lg:pr-5">
 
-                    <div className="flex gap-1 pl-2">
-                      <div className="">preço:</div>
-                      <p>R$</p>
-                    </div>
+                    <div className="hidden md:flex">preço:</div>
                     <Input
-                    
-                      {...register('newValue', { required: true, min: 0.01 })}
-                      placeholder="0,00"
-                      className="w-16 text-sm rounded-full rounded-bl-full bg-input hover:opacity-80"
+                      placeholder="R$ 0.00"
+                      className="w-24 text-sm rounded-full bg-input hover:opacity-80"
+                      value={formattedValue}
+                      onChange={(e) => {
+                        const rawValue = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+                        const numericValue = Number(rawValue) / 100;
+                        setValue('newValue', numericValue); // Armazena como número
+                        setFormattedValue(numericValue.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+                      }}
                     />
                   </label>
 
@@ -192,7 +198,7 @@ export const ListEdit = () => {
                   pl-4 pr-0
                   sm:pl-8
                   md:pl-12 md:pr-2
-                  lg:pl-16 lg:pr-4">
+                  lg:pl-10 lg:pr-5">
 
                     <div className="">qtd:</div>
                     <Input
@@ -227,19 +233,25 @@ export const ListEdit = () => {
                   </label>
                   <label className="flex w-full items-center border rounded-full text-sm
 
-                  pl-3 pr-0
+                  pl-2 pr-0
                   sm:pl-8 sm:pr-4 
-                  lg:pl-16 lg:pr-10">
+                  lg:pl-10 lg:pr-5">
 
-                    <div className="flex gap-1 pl-2">
-                      <div className="hidden md:flex">preço:</div>
-                      <p>R$</p>
-                    </div>  
+
+                    <div className="hidden md:flex">preço:</div>
+
                     <Input
-                      {...register('value', { required: true, min: 0.01 })}
-                      placeholder="0,00"
-                      className="w-16 text-sm rounded-full rounded-bl-full bg-input hover:opacity-80"
+                      placeholder="R$ 0.00"
+                      className="w-24 text-sm rounded-full bg-input hover:opacity-80"
+                      value={formattedValue}
+                      onChange={(e) => {
+                        const rawValue = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+                        const numericValue = Number(rawValue) / 100;
+                        setValue('value', numericValue); // Armazena como número
+                        setFormattedValue(numericValue.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+                      }}
                     />
+
                   </label>
 
                 </div>
