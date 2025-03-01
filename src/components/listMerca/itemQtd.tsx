@@ -32,7 +32,7 @@ export const ItemQtd = ({ item }: Props) => {
       >
         <Minus />
       </Button>
-      <div>{item.quantity}</div>
+      <div>{Number(item.quantity)}</div>
       <Button
         onClick={handleIncrement}
         className="border rounded-full p-2 size-5 flex items-center justify-center text-background"

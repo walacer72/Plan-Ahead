@@ -25,7 +25,7 @@ export const SecondList2 = () => {
   const chaveShowEdit = 2;
   const [showInput, setShowInput] = useState<boolean>(false);
 
-  const { list2, handleUpdateNameSet, setChaveKey, setModalReturn, setModalList, nameSetor } = useList();
+  const { list2, handleUpdateNameSet, setChaveKey, setModalReturn, setModalList, nameSetor, toogleItem } = useList();
 
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -42,7 +42,7 @@ export const SecondList2 = () => {
 
 
   return (
-    <div className="w-full h-auto flex flex-col justify-between border p-4 rounded-3xl bg-input">
+    <div className={`w-full h-auto flex flex-col justify-between ${list2.length > 0 ?'border border-blue-500': 'border'} p-4 rounded-3xl bg-input`}>
       <h1>
         {!showInput &&
           <div className="flex justify-between items-center">

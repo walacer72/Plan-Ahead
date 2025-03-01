@@ -46,8 +46,8 @@ export const ItemList = ({ item }: Props) => {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="ml-2 text-primary-foreground font-semibold md:mx-8">
-            R$: {total.toFixed(2)}
+          <div className="flex items-center gap-2 ml-2 text-primary-foreground font-semibold md:mx-8">
+            <p>R$: </p> {total.toFixed(2)}
           </div>
 
           <Delete

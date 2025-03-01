@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useList } from "@/contexts/valueListCpx";
-import { Forward, FilePenLine, Plus } from "lucide-react";
+import { Forward, FilePenLine, Plus, CheckCheck } from "lucide-react";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { QtdList } from "../qtdList";
 import { useState } from "react";
@@ -25,7 +25,7 @@ export const SecondList7 = () => {
   const chaveShowEdit = 7;
   const [showInput, setShowInput] = useState<boolean>(false);
 
-  const { list7, handleUpdateNameSet, setChaveKey, setModalReturn, setModalList, nameSetor } = useList();
+  const { list7, handleUpdateNameSet, setChaveKey, setModalReturn, setModalList, nameSetor, toogleItem } = useList();
 
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -42,7 +42,7 @@ export const SecondList7 = () => {
 
 
   return (
-    <div className="w-full h-auto flex flex-col justify-between border p-4 rounded-3xl bg-input">
+    <div className={`w-full h-auto flex flex-col justify-between ${list7.length > 0 ? 'border border-blue-500' : 'border'} p-4 rounded-3xl bg-input`}>
       <h1>
         {!showInput &&
           <div className="flex justify-between items-center">
@@ -97,13 +97,24 @@ export const SecondList7 = () => {
 
               <li key={item.id} className={`flex justify-between p-2 items-center border-b  $border-b-gray-500`} >
 
-                <div className="w-full max-w-4xl overflow-x-hidden text-wrap flex items-center justify-between gap-4 text-primary">
-                  <p>{item.text}</p>
-                  <p>qtd: {item.quantity}</p>
+                <div className="w-full max-w-4xl overflow-x-hidden flex items-center justify-between gap-4 text-primary">
+
+                  <p className="w-full max-w-24 break-words">{item.text}</p>
+
+                  <div className="flex items-center gap-2">
+                    <p className="flex items-center gap-2"><span>qtd:</span>{Number(item.quantity)}</p>
+                    <p>{item.opcao}</p>
+                    <CheckCheck
+                      className={`size-5 hover:opacity-80  ${item.done ? 'text-blue-600' : 'text-primary-foreground'}`}
+                      onClick={() => toogleItem(item.id)} />
+
+                  </div>
+
 
                 </div>
 
               </li>
+
 
             ))}
 
