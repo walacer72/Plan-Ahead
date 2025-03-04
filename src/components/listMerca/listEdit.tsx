@@ -88,7 +88,7 @@ export const ListEdit = () => {
       {modalList === 'h-full' &&
         <div className={`fixed top-0 bottom-0 left-0 right-0 bg-black/50 z-50 ${showTutorial} justify-center items-center`}>
 
-          <div className={`fixed top-40 text-sm w-48 h-64 left-44 md:left-10 flex flex-col
+          <div className={`fixed top-40 text-sm w-48 text-neutral-900 h-64 left-44 md:left-10 flex flex-col
             rounded-r-3xl rounded-b-3xl md:rounded-l-3xl md:rounded-b-3xl md:rounded-tr-none p-4 bg-white shadow-gray-600 shadow-2xl`}>
               
             <button onClick={handleCloseTutori} className="self-start">
