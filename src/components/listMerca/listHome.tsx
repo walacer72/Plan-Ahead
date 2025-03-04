@@ -57,7 +57,7 @@ export const ListHome = () => {
   return (
     <div className="">
 
-      <div className={`fixed top-0 bottom-0 left-0 right-0 bg-black/50 z-40 ${showTutorial} justify-center items-center`}>
+      <div className={`fixed top-0 bottom-0 left-0 right-0 bg-black/60 z-40 ${showTutorial} justify-center items-center`}>
 
         <div className={`absolute text-sm text-neutral-900 top-24 left-2 md:right-0 md:left-44 md:bottom-0 w-56 h-60 ${tutoList} flex-col rounded-l-3xl rounded-t-3xl border bg-white p-4 shadow-gray-600 shadow-2xl`}>
 
@@ -73,7 +73,7 @@ export const ListHome = () => {
           </Button>
         </div>
 
-        <div className={`absolute text-sm text-neutral-900 top-44 w-56 h-52 left-36 md:left-96 ${tutoNameSet} flex-col rounded-l-3xl rounded-b-3xl z-50 p-4 bg-white shadow-gray-600 shadow-2xl`}>
+        <div className={`absolute text-sm text-neutral-900 top-44 w-56 h-52 left-32 md:left-96 ${tutoNameSet} flex-col rounded-l-3xl rounded-b-3xl z-50 p-4 bg-white shadow-gray-600 shadow-2xl`}>
           <button onClick={handleCloseTutori} className="self-start">
             <X className="size-4 transition-all duration-300 text-blue-500 hover:text-slate-500" />
           </button>
