@@ -1,5 +1,6 @@
 'use client'
 
+import { List } from "@/components/data";
 import { Item } from "@/types/item";
 import { createContext, ReactNode, useContext, useState } from "react";
 
@@ -7,7 +8,7 @@ type Top = 'h-full' | 'h-0';
 type Left = '-left-48' | 'left-4';
 type Number = number | null;
 type SubTotal = 'bottom-3' | '-bottom-6';
-
+type filterType = 'h-16' | 'h-0';
 
 type ContextType = {
   list0: Item[];
@@ -43,6 +44,12 @@ type ContextType = {
   handleClearList: () => void;
   showSubTotal: SubTotal;
   setShowSubTotal: (showSub: SubTotal) => void;
+  dataProduct: Product[];
+  setDataProduct: (data: Product[]) => void;
+  valueInput: string;
+  setValueInput: (text: string) => void;
+  filterList: filterType;
+  setFilterList: (filter: filterType) => void;
 }
 
 export const ValueListContext = createContext<ContextType | undefined>(undefined);
@@ -65,6 +72,9 @@ export const ValueListProvider = ({ children }: { children: ReactNode }) => {
   const [modalReturn, setModalReturn] = useState<Left>('-left-48')
   const [showInput, setShowInput] = useState<boolean>(false);
   const [showSubTotal, setShowSubTotal] = useState<SubTotal>('-bottom-6');
+  const [dataProduct, setDataProduct] = useState<Product[]>(List);
+  const [valueInput, setValueInput] = useState<string>('');
+  const [filterList, setFilterList] = useState<filterType>('h-0');
   const [nameSetor, setNameSetor] = useState<string[]>(
     [
       "Higiene e limpeza",
@@ -76,13 +86,16 @@ export const ValueListProvider = ({ children }: { children: ReactNode }) => {
       "Bebidas",
       "Utensílios Domésticos",
       "Pet Shop"
-    ]);
+    ]
+  );
+
+ 
+  
 
 
   const handleAddText = (text: string, qtd: number, opcao: string, value: number) => {
     if (text.trim() !== '') {
-
-
+      
       switch (chaveKey) {
         case 0:
           setList0([...list0,
@@ -767,7 +780,7 @@ export const ValueListProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <ValueListContext.Provider value={{ list0, list1, list2, list3, list4, list5, list6, list7, list8, modalList, nameSetor, setNameSetor, setModalList, modalReturn, setModalReturn, chaveKey, setChaveKey, editText, setEditText, handleAddText, handleDeletText, handleEditText, toogleItem, handleUpdateTextInput, chaveEdit, setChaveEdit, setShowInput, showInput, showSubTotal, setShowSubTotal, handleUpdateNameSet, handleUpQuantity, handleClearList }}>
+    <ValueListContext.Provider value={{ list0, list1, list2, list3, list4, list5, list6, list7, list8, modalList, nameSetor, setNameSetor, setModalList, modalReturn, setModalReturn, chaveKey, setChaveKey, editText, setEditText, handleAddText, handleDeletText, handleEditText, toogleItem, handleUpdateTextInput, chaveEdit, setChaveEdit, setShowInput, showInput, showSubTotal, setShowSubTotal, handleUpdateNameSet, handleUpQuantity, handleClearList, dataProduct, setDataProduct, valueInput, setValueInput, filterList, setFilterList}}>
       {children}
     </ValueListContext.Provider>
   )

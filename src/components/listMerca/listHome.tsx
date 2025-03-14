@@ -24,11 +24,10 @@ export const ListHome = () => {
   const [flex, setFlex] = useState<string>('md:grid md:grid-cols-3')
   const [tutoList, setTutoList] = useState<ShowTuto>('flex');
   const [tutoNameSet, setTutoNameSet] = useState<ShowTuto>('hidden');
-  const [showTutorial, setShowTutorial] = useState<ShowTuto>('flex')
+  const [showTutorial, setShowTutorial] = useState<ShowTuto>('flex');
 
-  const {
+  const { setModalReturn, setModalList, modalReturn, chaveKey, nameSetor, setFilterList } = useList()
 
-    setModalReturn, setModalList, modalReturn, chaveKey, nameSetor } = useList()
 
   const handleFlexDiv = () => {
     if (flex === 'md:grid md:grid-cols-3') {
@@ -38,10 +37,11 @@ export const ListHome = () => {
       setFlex('md:grid md:grid-cols-3');
     }
   }
+
   const handleReturnButtonModal = () => {
     setModalReturn('-left-48');
     setModalList('h-0');
-
+    setFilterList('h-0');
   }
 
   const handleTutori = () => {
@@ -70,10 +70,10 @@ export const ListHome = () => {
           </div>
           <Button onClick={handleTutori} className="bg-blue-500 rounded-full hover:bg-blue-400 self-start px-3 py-1 border-none text-xs text-white mt-2">
             ok, entendi
-          </Button>
+          </Button> 
         </div>
 
-        <div className={`absolute text-sm text-neutral-900 top-44 w-56 h-52 left-32 md:left-96 ${tutoNameSet} flex-col rounded-l-3xl rounded-b-3xl z-50 p-4 bg-white shadow-gray-600 shadow-2xl`}>
+        <div className={`absolute text-sm text-neutral-900 top-44 w-56 h-52 left-28 md:left-96 ${tutoNameSet} flex-col rounded-l-3xl rounded-b-3xl z-50 p-4 bg-white shadow-gray-600 shadow-2xl`}>
           <button onClick={handleCloseTutori} className="self-start">
             <X className="size-4 transition-all duration-300 text-blue-500 hover:text-slate-500" />
           </button>

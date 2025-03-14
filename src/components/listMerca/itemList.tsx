@@ -51,7 +51,7 @@ export const ItemList = ({ item }: Props) => {
           </div>
 
           <Delete
-            className="text-primary-foreground size-4 hover:opacity-80"
+            className="text-primary-foreground size-5 hover:opacity-80"
             onClick={() => handleDeletText(item.id)} />
 
           <Pencil

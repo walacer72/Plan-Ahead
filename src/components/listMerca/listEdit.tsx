@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Forward, ListX, X } from 'lucide-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useList } from "@/contexts/valueListCpx";
@@ -8,9 +8,9 @@ import { Input } from "../ui/input";
 import { ItemList } from "./itemList";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/menuSize";
 import { QtdList } from "./qtdList";
-import InputMask from 'react-input-mask';
 import { Button } from "../ui/button";
 import { ShowTuto } from "./listHome";
+import { ItemProduct } from "./itemProduct";
 
 
 type Inputs = {
@@ -26,6 +26,7 @@ type Inputs = {
 }
 
 
+
 export const ListEdit = () => {
 
   const {
@@ -37,34 +38,42 @@ export const ListEdit = () => {
 
   } = useForm<Inputs>();
 
-
-  const {
-    handleAddText, handleUpdateTextInput, modalReturn, setEditText,
-    modalList, editText, chaveKey, handleClearList,
-    list0, list1, list2, list3, list4, list5, list6, list7, list8
-
-  } = useList();
-
-  const [formattedValue, setFormattedValue] = useState("");
-  const [showTutorial, setShowTutorial] = useState<ShowTuto>('flex')
-
-  const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
-
-    if (data.text.trim() !== '') {
-      handleAddText(data.text, data.quantity, data.opcao, data.value)
-      setValue('text', '');
-      setValue('quantity', 0);
-      setFormattedValue('');
-      setFocus("text");
-    }
-
-  }
-
-
   useEffect(() => {
     setFocus("text"); // Define o foco automaticamente no campo "text"
   }, [setFocus]);
 
+
+  const {
+    handleAddText, handleUpdateTextInput, modalReturn, setEditText,
+    modalList, editText, chaveKey, handleClearList, dataProduct,
+    list0, list1, list2, list3, list4, list5, list6, list7, list8, valueInput, setValueInput,
+    filterList, setFilterList
+  } = useList();
+
+  const [formattedValue, setFormattedValue] = useState("");
+  const [showTutorial, setShowTutorial] = useState<ShowTuto>('flex')
+  
+
+  let listFilter = [];
+
+  // ENVIANDO DADOS DO INPUT
+  const handleFormSubmit: SubmitHandler<Inputs> = (data, event) => {
+    event?.preventDefault();
+    
+    if (data) {
+      handleAddText(data.text, data.quantity, data.opcao, data.value)
+      setValue('text', '');
+      setValue('quantity', 0);
+      setValue('value', 0.00);
+      setFormattedValue('');
+      setFocus("text");
+    }
+
+    setValueInput('');
+
+  }
+
+  // ENVIANDO DADOS DO INPUT EDITADO 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
 
     if (data.newText !== '') {
@@ -81,6 +90,15 @@ export const ListEdit = () => {
   const handleCloseTutori = () => {
     setShowTutorial('hidden');
   }
+  for (let i = 0; i <= 8; i++) {
+    switch (chaveKey) {
+      case i:
+        listFilter[i] = dataProduct.filter(item => item.key === i);
+        break;
+      default:
+        break;
+    }
+  }
 
 
   return (
@@ -90,7 +108,7 @@ export const ListEdit = () => {
 
           <div className={`fixed top-40 text-sm w-48 text-neutral-900 h-64 left-44 md:left-10 flex flex-col
             rounded-r-3xl rounded-b-3xl md:rounded-l-3xl md:rounded-b-3xl md:rounded-tr-none p-4 bg-white shadow-gray-600 shadow-2xl`}>
-              
+
             <button onClick={handleCloseTutori} className="self-start">
               <X className="size-4 transition-all duration-300 hover:text-blue-400 text-blue-500" />
             </button>
@@ -102,7 +120,7 @@ export const ListEdit = () => {
 
             <Button onClick={handleCloseTutori} className="bg-blue-500 rounded-full hover:bg-blue-400 self-start px-3 border-none py-1 text-xs m-0 text-white">
               ok, entendi
-            </Button> 
+            </Button>
           </div>
 
         </div>
@@ -132,11 +150,11 @@ export const ListEdit = () => {
 
                   <div className="flex gap-2 ml-4 my-1">
                     <label className="flex w-full items-center border rounded-full
-
-          pl-4 pr-0 
-          sm:pl-8
-          md:pl-12 md:pr-2
-          lg:pl-16 lg:pr-4">
+                    pl-4 pr-0 
+                    sm:pl-8
+                    md:pl-12 md:pr-2
+                    lg:pl-16 lg:pr-4"
+                    >
 
                       <div className="">qtd:</div>
                       <Input
@@ -148,9 +166,9 @@ export const ListEdit = () => {
                     </label>
 
                     <label className="flex w-full items-center border rounded-full 
-
-          pl-2 pr-1 md:pl-8 md:pr-4
-          lg:pl-16 lg:pr-12">
+                    pl-2 pr-1 md:pl-8 md:pr-4
+                    lg:pl-16 lg:pr-12"
+                    >
 
                       <Select
                         onValueChange={(value) => setValue("newOpcao", value)}
@@ -170,14 +188,15 @@ export const ListEdit = () => {
                       </Select>
                     </label>
                     <label className="flex w-full items-center border rounded-full text-sm
-
-            pl-2 pr-0
-            sm:pl-8 sm:pr-4 
-            lg:pl-10 lg:pr-5">
+                    pl-2 pr-0
+                    sm:pl-8 sm:pr-4 
+                    lg:pl-10 lg:pr-5"
+                    >
 
                       <div className="hidden md:flex">preço:</div>
                       <Input
                         placeholder="R$ 0.00"
+                        {...register('value', { required: true })}
                         className="w-24 text-sm rounded-full bg-input hover:opacity-80"
                         value={formattedValue}
                         onChange={(e) => {
@@ -202,96 +221,107 @@ export const ListEdit = () => {
                 {errors.text?.type === 'required' && <p>Este campo precisa ser preenchido!</p>}
                 {errors.text?.type === 'maxLength' && <p>Máximo de 80 caracteres</p>}
                 {errors.quantity?.type === 'min' && <p>Insira um número positivo</p>}
+                {errors.value?.type === 'required' && <p>Insira um valor</p>}
               </div>
             </div>
           }
 
 
-          {!editText &&
+          {
+            // INPUT SEM EDIT 
+            !editText &&
             <div className="flex flex-col w-full lg:max-w-6xl">
               <form
-                className="flex items-center justify-between w-full border bg-input rounded-full my-4 shadow-lg p-2 text-primary"
+                className="flex flex-col items-center justify-between w-full border bg-input rounded-3xl my-4 shadow-lg px-4 py-2 text-primary text-sm"
                 onSubmit={handleSubmit(handleFormSubmit)}>
 
-                <div className="flex flex-col items-center justi sm:flex-row">
-                  <label className="flex justify-between w-full px-2 md:px-6 pr-22 md:pr-40 lg:pr-56">
+                <label className="flex justify-between w-full">
 
-                    <Input
-                      {...register('text', { required: true, maxLength: 100 })}
-                      placeholder="Digite seu texto"
-                      className="w-full rounded-full rounded-bl-full bg-input hover:opacity-80"
-                    />
+                  <Input
+                    {...register('text', { required: true, maxLength: 100 })}
+                    onClick={() => setFilterList('h-16')}
+                    placeholder="Digite seu texto"
+                    className="w-full rounded-full text-sm rounded-bl-full bg-input hover:opacity-80"
+                    value={valueInput}
+                    onChange={(e) => setValueInput(e.target.value)}
+                  />
 
-                  </label>
+                </label>
 
-                  <div className="flex gap-2 ml-4 my-1">
-                    <label className="flex w-full items-center border rounded-full
+                <div className={`flex w-full h-0 transition-all ease-in-out duration-200 ${filterList} mt-6`}>
 
-            pl-4 pr-0
-            sm:pl-8
-            md:pl-12 md:pr-2
-            lg:pl-10 lg:pr-5">
-
-                      <div className="">qtd:</div>
-                      <Input
-                        placeholder="0"
-                        {...register('quantity', { required: true, min: 1 })}
-                        type="number"
-                        className="rounded-full w-16 rounded-bl-full bg-input hover:opacity-80" />
-
-                    </label>
-
-                    <label className="flex w-full items-center border rounded-full 
-
-            pl-2 pr-1 md:pl-8 md:pr-4
-            lg:pl-16 lg:pr-12">
-
-                      <Select
-                        onValueChange={(value) => setValue("opcao", value)}
-
-                        {...register('opcao')}>
-
-                        <SelectTrigger className="w-12 m-0 pl-0 pr-1 rounded-full shadow-none">
-                          <SelectValue placeholder="tipo:" />
-                        </SelectTrigger>
-                        <SelectContent className="w-16 bg-input ">
-
-                          <SelectItem value="und">und</SelectItem>
-                          <SelectItem value="kg">kg</SelectItem>
-                          <SelectItem value="gm">gm</SelectItem>
-
-                        </SelectContent>
-                      </Select>
-                    </label>
-                    <label className="flex w-full items-center border rounded-full text-sm
-
-            pl-2 pr-0
-            sm:pl-8 sm:pr-4 
-            lg:pl-10 lg:pr-5">
-
-
-                      <div className="hidden md:flex">preço:</div>
-
-                      <Input
-                        placeholder="R$ 0.00"
-                        className="w-24 text-sm rounded-full bg-input hover:opacity-80"
-                        value={formattedValue}
-                        onChange={(e) => {
-                          const rawValue = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
-                          const numericValue = Number(rawValue) / 100;
-                          setValue('value', numericValue); // Armazena como número
-                          setFormattedValue(numericValue.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-                        }}
-                      />
-
-                    </label>
+                  <div className="flex gap-2 w-full lg:max-w-6xl break-words overflow-y-auto">
+                    {chaveKey === 0 && filterList === 'h-16' && listFilter[0].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {chaveKey === 1 && filterList === 'h-16' && listFilter[1].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {chaveKey === 2 && filterList === 'h-16' && listFilter[2].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {chaveKey === 3 && filterList === 'h-16' && listFilter[3].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {chaveKey === 4 && filterList === 'h-16' && listFilter[4].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {chaveKey === 5 && filterList === 'h-16' && listFilter[5].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {chaveKey === 6 && filterList === 'h-16' && listFilter[6].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {chaveKey === 7 && filterList === 'h-16' && listFilter[7].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {chaveKey === 8 && filterList === 'h-16' && listFilter[8].map(item => <ItemProduct key={item.id} item={item} />)}
 
                   </div>
 
                 </div>
-                <button className="" type="submit" value="enviar">
-                  <Forward className="mr-0 md:mr-5 text-gray-500 size-6 md:size-7" />
-                </button>
+
+                <div className="w-full flex justify-between gap-4 md:gap-16 my-2">
+
+                  <label className="flex w-full items-center justify-center border rounded-full
+                    flex-1 pl-1 pr-0 md:pl-0 z-10 bg-input"
+                  >
+
+                    <div className="">qtd:</div>
+                    <Input
+                      placeholder="0"
+                      {...register('quantity', { required: true, min: 1 })}
+                      type="number"
+                      className="rounded-full w-16 m-0 -mr-10 z-0 rounded-bl-full bg-transparent border-transparent hover:opacity-80" />
+
+                  </label>
+
+                  <label className="flex w-full items-center justify-center  border rounded-full 
+                    flex-1"
+                  >
+
+                    <Select
+                      onValueChange={(value) => setValue("opcao", value)}
+
+                      {...register('opcao')}>
+
+                      <SelectTrigger className="w-12 m-0 pl-0 pr-1 rounded-full shadow-none">
+                        <SelectValue placeholder="tipo:" />
+                      </SelectTrigger>
+                      <SelectContent className="w-16 bg-input ">
+
+                        <SelectItem value="und">und</SelectItem>
+                        <SelectItem value="kg">kg</SelectItem>
+                        <SelectItem value="gm">gm</SelectItem>
+
+                      </SelectContent>
+                    </Select>
+                  </label>
+
+                  <label className="flex w-full items-center justify-center border rounded-full text-sm
+                    flex-1 bg-input"
+                  >
+
+                    <Input
+                      placeholder="R$ 0.00"
+                      {...register('value', { required: true })}
+                      className="w-24 flex items-center text-center justify-center text-sm m-0 rounded-full  hover:opacity-80 bg-transparent border-transparent"
+
+                    />
+
+                  </label>
+
+                  <button className="" type="submit" value="enviar">
+                    <Forward className="mr-0  text-gray-500 size-6 md:size-7" />
+                  </button>
+
+                </div>
+
+
 
 
               </form>
@@ -299,6 +329,7 @@ export const ListEdit = () => {
                 {errors.text?.type === 'required' && <p>Este campo precisa ser preenchido!</p>}
                 {errors.text?.type === 'maxLength' && <p>Máximo de 80 caracteres</p>}
                 {errors.quantity?.type === 'min' && <p>Insira um número positivo</p>}
+                {errors.value?.type === 'required' && <p>Insira um valor</p>}
               </div>
             </div>
           }

@@ -24,7 +24,7 @@ body {
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 215.4 16.3% 46.9%;
+    --border: 216 12.2% 83.9%;
     --input: 214.3 31.8% 91.4%;
     --ring: 240 5% 64.9%;
     --chart-1: 12 76% 61%;
@@ -72,25 +72,22 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
-::-webkit-scrollbar {
-  width: 1em;
+.light ::-webkit-scrollbar {
+  height: .9em;
+}
+.dark ::-webkit-scrollbar {
+  height: .7em;
 }
 
-::-webkit-scrollbar-track {
-  background-color: #282828;
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(230, 25%, 23%);
   border-radius: 100vw;
-  margin-block: .80em;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #bac7c7;
+.light ::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(210, 5%, 92%);
   border-radius: 100vw;
-  border: .20em solid #282828; 
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #dadede;
+  border: solid 1px hsl(216 12.2% 83.9%);
 }
 
 .button {
