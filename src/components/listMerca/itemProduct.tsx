@@ -7,19 +7,23 @@ type Props = {
 
 export const ItemProduct = ({ item }: Props) => {
 
-const { valueInput, setValueInput } = useList();
+    const { valueInput, setValueInput } = useList();
 
     const handleAddInput = (text: string) => {
-        
-        if  (valueInput.trim() === '') {
-            setValueInput(text);
+        setValueInput(text);    
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (event.key === "Enter" || event.key === " ") { // Espaço opcional para acessibilidade
+            handleAddInput(item.product);
         }
-        
     }
 
     return (
         <Button
-        onClick={() => handleAddInput(item.product)}
-        variant={'secondary'} className="rounded-full">{item.product}</Button>
+            onClick={() => handleAddInput(item.product)}
+            type="button"
+            onKeyDown={handleKeyDown}
+            variant={'secondary'} className="rounded-full"><p className="text-sm">{item.product}</p></Button>
     )
 }

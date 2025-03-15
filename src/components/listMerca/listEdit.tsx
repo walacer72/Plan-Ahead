@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { Forward, ListX, X } from 'lucide-react';
+import { ChevronsDown, ChevronsUp, Forward, ListX, X } from 'lucide-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useList } from "@/contexts/valueListCpx";
 import { Input } from "../ui/input";
@@ -52,14 +52,15 @@ export const ListEdit = () => {
 
   const [formattedValue, setFormattedValue] = useState("");
   const [showTutorial, setShowTutorial] = useState<ShowTuto>('flex')
-  
+  let funcaoUnique: boolean = false;
 
   let listFilter = [];
 
   // ENVIANDO DADOS DO INPUT
   const handleFormSubmit: SubmitHandler<Inputs> = (data, event) => {
     event?.preventDefault();
-    
+
+
     if (data) {
       handleAddText(data.text, data.quantity, data.opcao, data.value)
       setValue('text', '');
@@ -90,6 +91,7 @@ export const ListEdit = () => {
   const handleCloseTutori = () => {
     setShowTutorial('hidden');
   }
+
   for (let i = 0; i <= 8; i++) {
     switch (chaveKey) {
       case i:
@@ -97,6 +99,21 @@ export const ListEdit = () => {
         break;
       default:
         break;
+    }
+  }
+
+  const handleCloseFilter = () => {
+    if (!funcaoUnique) {
+      setFilterList('h-16');
+      funcaoUnique = true;
+    }
+  }
+
+  const handleClickClose = () => {
+    if (filterList === 'h-16') {
+      setFilterList('h-0');
+    } else {
+      setFilterList('h-16');
     }
   }
 
@@ -232,23 +249,32 @@ export const ListEdit = () => {
             !editText &&
             <div className="flex flex-col w-full lg:max-w-6xl">
               <form
-                className="flex flex-col items-center justify-between w-full border bg-input rounded-3xl my-4 shadow-lg px-4 py-2 text-primary text-sm"
+                className="flex flex-col items-center justify-between w-full border bg-input rounded-3xl my-4 shadow-lg py-3 text-primary text-sm"
                 onSubmit={handleSubmit(handleFormSubmit)}>
 
                 <label className="flex justify-between w-full">
 
                   <Input
                     {...register('text', { required: true, maxLength: 100 })}
-                    onClick={() => setFilterList('h-16')}
+                    onClick={handleCloseFilter}
                     placeholder="Digite seu texto"
                     className="w-full rounded-full text-sm rounded-bl-full bg-input hover:opacity-80"
                     value={valueInput}
                     onChange={(e) => setValueInput(e.target.value)}
                   />
 
+                  <button
+                    onClick={handleClickClose}
+                    type="button"
+                    className=" border-none rounded-full animate-bounce m-1 p-3 flex items-center justify-center"
+                    >
+                    {filterList === 'h-0' && <ChevronsDown className="size-5"/>}
+                    {filterList === 'h-16' && <ChevronsUp className="size-5"/>}
+                  </button>
+
                 </label>
 
-                <div className={`flex w-full h-0 transition-all ease-in-out duration-200 ${filterList} mt-6`}>
+                <div className={`flex w-full h-0 transition-all ease-in-out duration-200 ${filterList} mt-4 px-3`}>
 
                   <div className="flex gap-2 w-full lg:max-w-6xl break-words overflow-y-auto">
                     {chaveKey === 0 && filterList === 'h-16' && listFilter[0].map(item => <ItemProduct key={item.id} item={item} />)}
@@ -265,7 +291,7 @@ export const ListEdit = () => {
 
                 </div>
 
-                <div className="w-full flex justify-between gap-4 md:gap-16 my-2">
+                <div className="w-full flex justify-between gap-4 md:gap-16 mt-2 px-3">
 
                   <label className="flex w-full items-center justify-center border rounded-full
                     flex-1 pl-1 pr-0 md:pl-0 z-10 bg-input"
@@ -316,7 +342,7 @@ export const ListEdit = () => {
                   </label>
 
                   <button className="" type="submit" value="enviar">
-                    <Forward className="mr-0  text-gray-500 size-6 md:size-7" />
+                    <Forward className="mr-0  text-gray-500 size-6"/>
                   </button>
 
                 </div>
