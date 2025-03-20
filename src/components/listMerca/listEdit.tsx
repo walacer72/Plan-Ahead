@@ -11,6 +11,7 @@ import { QtdList } from "./qtdList";
 import { Button } from "../ui/button";
 import { ShowTuto } from "./listHome";
 import { ItemProduct } from "./itemProduct";
+import { List } from "../data";
 
 
 type Inputs = {
@@ -52,7 +53,7 @@ export const ListEdit = () => {
 
   const [formattedValue, setFormattedValue] = useState("");
   const [showTutorial, setShowTutorial] = useState<ShowTuto>('flex')
-  let funcaoUnique: boolean = false;
+  const [funcaoUnique, setFuncaoUnique] = useState<boolean>(false);
 
   let listFilter = [];
 
@@ -102,10 +103,14 @@ export const ListEdit = () => {
     }
   }
 
+  const filterDigit = List.filter(item => 
+    item.product.toLowerCase().includes(valueInput.toLowerCase())
+  )
+
   const handleCloseFilter = () => {
     if (!funcaoUnique) {
       setFilterList('h-16');
-      funcaoUnique = true;
+      setFuncaoUnique(true);
     }
   }
 
@@ -266,10 +271,10 @@ export const ListEdit = () => {
                   <button
                     onClick={handleClickClose}
                     type="button"
-                    className=" border-none rounded-full animate-bounce m-1 p-3 flex items-center justify-center"
-                    >
-                    {filterList === 'h-0' && <ChevronsDown className="size-5"/>}
-                    {filterList === 'h-16' && <ChevronsUp className="size-5"/>}
+                    className=" border-none rounded-full animate-bounce p-3 flex items-center justify-center"
+                  >
+                    {filterList === 'h-0' && <ChevronsDown className="size-5" />}
+                    {filterList === 'h-16' && <ChevronsUp className="size-5" />}
                   </button>
 
                 </label>
@@ -277,15 +282,27 @@ export const ListEdit = () => {
                 <div className={`flex w-full h-0 transition-all ease-in-out duration-200 ${filterList} mt-4 px-3`}>
 
                   <div className="flex gap-2 w-full lg:max-w-6xl break-words overflow-y-auto">
-                    {chaveKey === 0 && filterList === 'h-16' && listFilter[0].map(item => <ItemProduct key={item.id} item={item} />)}
-                    {chaveKey === 1 && filterList === 'h-16' && listFilter[1].map(item => <ItemProduct key={item.id} item={item} />)}
-                    {chaveKey === 2 && filterList === 'h-16' && listFilter[2].map(item => <ItemProduct key={item.id} item={item} />)}
-                    {chaveKey === 3 && filterList === 'h-16' && listFilter[3].map(item => <ItemProduct key={item.id} item={item} />)}
-                    {chaveKey === 4 && filterList === 'h-16' && listFilter[4].map(item => <ItemProduct key={item.id} item={item} />)}
-                    {chaveKey === 5 && filterList === 'h-16' && listFilter[5].map(item => <ItemProduct key={item.id} item={item} />)}
-                    {chaveKey === 6 && filterList === 'h-16' && listFilter[6].map(item => <ItemProduct key={item.id} item={item} />)}
-                    {chaveKey === 7 && filterList === 'h-16' && listFilter[7].map(item => <ItemProduct key={item.id} item={item} />)}
-                    {chaveKey === 8 && filterList === 'h-16' && listFilter[8].map(item => <ItemProduct key={item.id} item={item} />)}
+                    {valueInput.trim() !== '' &&
+                      filterDigit.map(item => (
+                        <Button
+                          key={item.id}
+                          onClick={() => {
+                            setValue("text", item.product); // Atualiza o input do React Hook Form
+                            setValueInput(item.product); // Mantém o estado local atualizado
+                          }}
+                          type="submit"
+                          variant={'secondary'} className="rounded-full"><p className="text-sm">{item.product}</p></Button>
+                      ))
+                    }
+                    {valueInput === '' && chaveKey === 0 && filterList === 'h-16' && listFilter[0].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
+                    {valueInput === '' && chaveKey === 1 && filterList === 'h-16' && listFilter[1].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
+                    {valueInput === '' && chaveKey === 2 && filterList === 'h-16' && listFilter[2].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
+                    {valueInput === '' && chaveKey === 3 && filterList === 'h-16' && listFilter[3].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
+                    {valueInput === '' && chaveKey === 4 && filterList === 'h-16' && listFilter[4].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
+                    {valueInput === '' && chaveKey === 5 && filterList === 'h-16' && listFilter[5].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
+                    {valueInput === '' && chaveKey === 6 && filterList === 'h-16' && listFilter[6].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
+                    {valueInput === '' && chaveKey === 7 && filterList === 'h-16' && listFilter[7].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
+                    {valueInput === '' && chaveKey === 8 && filterList === 'h-16' && listFilter[8].map(item => <ItemProduct setValue={setValue} key={item.id} item={item} />)}
 
                   </div>
 
@@ -342,7 +359,7 @@ export const ListEdit = () => {
                   </label>
 
                   <button className="" type="submit" value="enviar">
-                    <Forward className="mr-0  text-gray-500 size-6"/>
+                    <Forward className="mr-0  text-gray-500 size-6" />
                   </button>
 
                 </div>
