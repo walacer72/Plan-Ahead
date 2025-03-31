@@ -22,11 +22,11 @@ export type ShowTuto = 'flex' | 'hidden';
 export const ListHome = () => {
 
   const [flex, setFlex] = useState<string>('md:grid md:grid-cols-3')
-  const [tutoList, setTutoList] = useState<ShowTuto>('flex');
+  const [tutoList, setTutoList] = useState<ShowTuto>('hidden');
   const [tutoNameSet, setTutoNameSet] = useState<ShowTuto>('hidden');
-  const [showTutorial, setShowTutorial] = useState<ShowTuto>('flex');
+  const [showTutorial, setShowTutorial] = useState<ShowTuto>('hidden');
 
-  const { setModalReturn, setModalList, modalReturn, chaveKey, nameSetor, setFilterList } = useList()
+  const { setQtdListReturn, setModalReturn, setQtdListAppear, setModalList, modalReturn, chaveKey, nameSetor, setFilterList } = useList()
 
 
   const handleFlexDiv = () => {
@@ -39,9 +39,22 @@ export const ListHome = () => {
   }
 
   const handleReturnButtonModal = () => {
+    setQtdListReturn('-left-64');
+    setQtdListAppear('');
     setModalReturn('-left-48');
     setModalList('h-0');
     setFilterList('h-0');
+  }
+
+  const handleHelpTutori = () => {
+    if (tutoList === 'hidden') {
+      setTutoList('flex');
+      setShowTutorial('flex');
+    } else {
+      setTutoList('hidden');
+      setShowTutorial('hidden');
+    }
+
   }
 
   const handleTutori = () => {
@@ -52,6 +65,7 @@ export const ListHome = () => {
 
   const handleCloseTutori = () => {
     setShowTutorial('hidden');
+    setTutoNameSet('hidden');
   }
 
   return (
@@ -70,7 +84,7 @@ export const ListHome = () => {
           </div>
           <Button onClick={handleTutori} className="bg-blue-500 rounded-full hover:bg-blue-400 self-start px-3 py-1 border-none text-xs text-white mt-2">
             ok, entendi
-          </Button> 
+          </Button>
         </div>
 
         <div className={`absolute text-sm text-neutral-900 top-44 w-56 h-52 left-28 md:left-96 ${tutoNameSet} flex-col rounded-l-3xl rounded-b-3xl z-50 p-4 bg-white shadow-gray-600 shadow-2xl`}>
@@ -83,27 +97,33 @@ export const ListHome = () => {
 
             <Button variant={'default'} className="size-4 ml-2 p-4 bg-input rounded-full hover:text-background"><FilePenLine />
             </Button>
-            
+
           </div>
 
           <Button onClick={handleCloseTutori} className="bg-blue-500 rounded-full hover:bg-blue-400 self-start px-3 py-1 border-none text-xs text-white mt-2">
             ok, entendi
-          </Button> 
+          </Button>
         </div>
 
 
       </div>
 
       <div className="relative flex-col justify-center items-center z-0">
-        <h1 className={`fixed top-0 right-0 left-0 bg-input z-0 h-32 flex justify-end p-4 px-8 items-center lg:justify-center text-xl font-bold lg:text-4xl gap-1`}>
+        <h1 className={`fixed top-0 right-0 left-0 bg-input z-0 h-32 flex justify-end p-4 px-8 items-center lg:justify-center text-xl font-bold lg:text-3xl gap-1`}>
 
           <p>Lista de Mercado</p>
-          <ShoppingBag className="size-5 lg:size-8 lg:m-0" />
+          <ShoppingBag size={22} className=" lg:size-8 lg:m-0 text-blue-500" />
         </h1>
 
         <div className="fixed left-0 right-0 bottom-2 py-4 px-2 top-28 flex justify-center bg-background z-40 rounded-t-3xl shadow-2xl mb-12">
 
           <div className="w-full h-full flex justify-center overflow-y-auto pt-2">
+            <Button
+              onClick={handleHelpTutori}
+              className="absolute top-60 bg-blue-600/60 text-black -right-11 transition-all duration-300 text-base hover:-right-5 transform -rotate-90 hover:bg-blue-600/90"
+              >
+              Ajuda
+            </Button>
 
             <div className="flex ml-0 md:ml-[3.5rem] w-full max-w-4xl">
               <div className={`w-full max-w-4xl flex flex-col ${flex} gap-4 px-2`}>

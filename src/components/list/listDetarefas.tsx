@@ -111,7 +111,8 @@ export const List = () => {
 
       <div className="fixed right-0 left-0 top-0 flex flex-col items-center justify-center z-0 bg-input p-8">
 
-        <h1 className="font-bold text-3xl flex items-center">Lista de tarefas<CircleCheckBig /></h1>
+        <h1 className="font-bold text-3xl flex items-center">Lista de tarefas<CircleCheckBig size={28} className="text-blue-500" /></h1>
+        
         {editText &&
           <div className="flex flex-col w-full max-w-6xl">
             <form
@@ -140,17 +141,17 @@ export const List = () => {
         {!editText &&
           <div className="flex flex-col w-full max-w-6xl">
             <form
-              className="flex items-center w-full max-w-6xl border bg-input rounded-md mt-4 mb-2 shadow-xl"
+              className="flex items-center w-full max-w-6xl border bg-background rounded-md mt-4 mb-2 shadow-xl"
               onSubmit={handleSubmit(handleFormSubmit)}>
 
               <input
                 {...register('text', { required: true, maxLength: 80 })}
                 placeholder="Digite seu texto"
-                className="rounded-tl-md rounded-bl-md w-full p-3 outline-none bg-input hover:opacity-80 "
+                className="rounded-tl-md rounded-bl-md w-full p-3 outline-none bg-background hover:opacity-80 "
               />
 
-              <button type="submit" value="enviar">
-                <Forward className="mr-3 text-gray-400" />
+              <button type="submit" className="bg-background" value="enviar">
+                <Forward className="mr-3 bg-background text-gray-400" />
               </button>
 
             </form>

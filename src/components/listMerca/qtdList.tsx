@@ -25,7 +25,7 @@ export const QtdList = ({ list }: Props) => {
   const TotalValueList = handleTotalList();
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center gap-2 text-primary">
+    <div className="flex items-center justify-center gap-2 text-primary">
       <div className="">{list.length} {list.length !== 0 && list.length !== 1 ? 'itens': 'item'}</div>
       <div className="">
        R$: {TotalValueList.toFixed(2)}

@@ -4,260 +4,217 @@
 export const List: Product[] = [
     {
         id: 0,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Detergente'
     },
     {
         id: 1,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Esponja'
     },
     {
         id: 2,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Sabão em Pó'
     },
     {
         id: 3,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Amaciante'
     },
     {
         id: 4,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Alcool'
     },
     {
         id: 5,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Papel Manteiga'
     },
     {
         id: 6,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Papel Toalha'
     },
     {
         id: 7,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Desinfetante'
     },
     {
         id: 8,
-        key: 0,
-        category: 'Higiene e limpeza',
+        categoryId: 0,
         product: 'Limpador Multiuso'
     },
     {
         id: 9,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Arroz'
     },
     {
         id: 10,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Feijão Preto'
     },
     {
         id: 11,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Feijão Branco'
     },
     {
         id: 12,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Açucar'
     },
     {
         id: 13,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Farinha de Trigo'
     },
     {
         id: 14,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Fermento'
     },
     {
         id: 15,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Leite'
     },
     {
         id: 16,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Leite Condensado'
     },
     {
         id: 17,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Creme de Leite'
     },
     {
         id: 18,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Azeite'
     },
     {
         id: 19,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Vinagre'
     },
     {
         id: 20,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Temperos'
     },
     {
         id: 21,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Championg'
     },
     {
         id: 22,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Palmito'
     },
     {
         id: 23,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Ketchup'
     },
     {
         id: 24,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Mostarda'
     },
     {
         id: 25,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Maionese'
     },
     {
         id: 26,
-        key: 1,
-        category: 'Mercearia',
+        categoryId: 1,
         product: 'Macarrão'
     },
     {
         id: 27,
-        key: 2,
-        category: 'Frios e laticínios',
+        categoryId: 2,
         product: 'Danones'
     },
     {
         id: 28,
-        key: 2,
-        category: 'Frios e laticínios',
+        categoryId: 2,
         product: 'Manteiga'
     },
     {
         id: 29,
-        key: 2,
-        category: 'Frios e laticínios',
+        categoryId: 2,
         product: 'Requeijão'
     },
     {
         id: 30,
-        key: 2,
-        category: 'Frios e laticínios',
+        categoryId: 2,
         product: 'Queijo'
     },
     {
         id: 31,
-        key: 2,
-        category: 'Frios e laticínios',
+        categoryId: 2,
         product: 'Presunto'
     },
     {
         id: 32,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Carne p/ bife'
     },
     {
         id: 33,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Peito de Frango'
     },
     {
         id: 34,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Coxa s/coxa'
     },
     {
         id: 35,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Sobrecoxa'
     },
     {
         id: 36,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Linguiça'
     },
     {
         id: 37,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Salsicha'
     },
     {
         id: 38,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Coxinha de Frango'
     },
     {
         id: 39,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Carre'
     },
     {
         id: 40,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Lombinho Suino'
     },
     {
         id: 41,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Costela Bovina'
     },
     {
         id: 42,
-        key: 3,
-        category: 'Carnes (Proteínas)',
+        categoryId: 3,
         product: 'Costela Suina'
     }
 

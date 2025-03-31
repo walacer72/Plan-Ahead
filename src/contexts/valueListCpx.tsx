@@ -2,10 +2,12 @@
 
 import { List } from "@/components/data";
 import { Item } from "@/types/item";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 type Top = 'h-full' | 'h-0';
 type Left = '-left-48' | 'left-4';
+type ReturnQtd = '-left-64' | '-left-44' | '';
+type QtdAppear = '' | 'left-4';
 type Number = number | null;
 type SubTotal = 'bottom-3' | '-bottom-6';
 type filterType = 'h-16' | 'h-0';
@@ -30,6 +32,10 @@ type ContextType = {
   setModalList: (modalList: Top) => void;
   modalReturn: Left;
   setModalReturn: (modalReturn: Left) => void;
+  qtdListReturn: ReturnQtd;
+  setQtdListReturn: (qtdReturn: ReturnQtd) => void;
+  qtdListAppear: QtdAppear;
+  setQtdListAppear: (qtdList: QtdAppear) => void;
   handleAddText: (text: string, qtd: number, opcao: string, value: number) => void;
   handleDeletText: (id: number) => void;
   handleEditText: (id: number) => void;
@@ -50,6 +56,7 @@ type ContextType = {
   setValueInput: (text: string) => void;
   filterList: filterType;
   setFilterList: (filter: filterType) => void;
+  handleAddEqual: (newProduct: Product) => void;
 }
 
 export const ValueListContext = createContext<ContextType | undefined>(undefined);
@@ -72,7 +79,8 @@ export const ValueListProvider = ({ children }: { children: ReactNode }) => {
   const [modalReturn, setModalReturn] = useState<Left>('-left-48')
   const [showInput, setShowInput] = useState<boolean>(false);
   const [showSubTotal, setShowSubTotal] = useState<SubTotal>('-bottom-6');
-  const [dataProduct, setDataProduct] = useState<Product[]>(List);
+  const [qtdListReturn, setQtdListReturn] = useState<ReturnQtd>('-left-64');
+  const [qtdListAppear, setQtdListAppear] = useState<QtdAppear>('')
   const [valueInput, setValueInput] = useState<string>('');
   const [filterList, setFilterList] = useState<filterType>('h-0');
   const [nameSetor, setNameSetor] = useState<string[]>(
@@ -89,13 +97,24 @@ export const ValueListProvider = ({ children }: { children: ReactNode }) => {
     ]
   );
 
- 
-  
+  const [dataProduct, setDataProduct] = useState<Product[]>(List);
+
+  useEffect(() => {
+    console.log("Produtos atualizados:", dataProduct);
+  }, [dataProduct]);
+
+  const handleAddEqual = (newProduct: Product) => {
+
+    setDataProduct((prevData) => [...prevData, newProduct ])
+
+  }
+  console.log(dataProduct)
+
 
 
   const handleAddText = (text: string, qtd: number, opcao: string, value: number) => {
     if (text.trim() !== '') {
-      
+
       switch (chaveKey) {
         case 0:
           setList0([...list0,
@@ -779,8 +798,10 @@ export const ValueListProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+
+
   return (
-    <ValueListContext.Provider value={{ list0, list1, list2, list3, list4, list5, list6, list7, list8, modalList, nameSetor, setNameSetor, setModalList, modalReturn, setModalReturn, chaveKey, setChaveKey, editText, setEditText, handleAddText, handleDeletText, handleEditText, toogleItem, handleUpdateTextInput, chaveEdit, setChaveEdit, setShowInput, showInput, showSubTotal, setShowSubTotal, handleUpdateNameSet, handleUpQuantity, handleClearList, dataProduct, setDataProduct, valueInput, setValueInput, filterList, setFilterList}}>
+    <ValueListContext.Provider value={{ list0, list1, list2, list3, list4, list5, list6, list7, list8, modalList, nameSetor, setNameSetor, setModalList, modalReturn, setModalReturn, chaveKey, setChaveKey, editText, setEditText, handleAddText, handleDeletText, handleEditText, toogleItem, handleUpdateTextInput, chaveEdit, setChaveEdit, setShowInput, showInput, showSubTotal, setShowSubTotal, handleUpdateNameSet, handleUpQuantity, handleClearList, dataProduct, setDataProduct, valueInput, setValueInput, filterList, setFilterList, handleAddEqual, qtdListReturn, setQtdListReturn, qtdListAppear, setQtdListAppear }}>
       {children}
     </ValueListContext.Provider>
   )

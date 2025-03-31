@@ -1,7 +1,7 @@
 type Product = {
     id: number;
-    key: number;
-    category: string;
+    categoryId: number;
     product: string;
 };
   
+ 
