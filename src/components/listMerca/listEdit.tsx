@@ -45,10 +45,10 @@ export const ListEdit = () => {
 
 
   const {
-    handleAddText, handleUpdateTextInput, modalReturn, setEditText,
+    handleAddText, handleUpdateTextInput, setEditText,
     modalList, editText, chaveKey, handleClearList, dataProduct,
     list0, list1, list2, list3, list4, list5, list6, list7, list8, valueInput, setValueInput, qtdListAppear, setQtdListAppear, setQtdListReturn,
-    filterList, setFilterList, handleAddEqual, nameSetor, qtdListReturn
+    filterList, setFilterList, handleAddEqual, qtdListReturn
   } = useList();
 
   const [formattedValue, setFormattedValue] = useState("");
@@ -437,7 +437,7 @@ export const ListEdit = () => {
 
             <Button
               onClick={handleHelpTutori}
-              className="absolute top-60 bg-blue-600/60 text-black -right-10 transition-all duration-300 hover:-right-5 transform -rotate-90 hover:bg-blue-600/90"
+              className="absolute top-60 bg-blue-600/40 text-base text-black -left-11 transition-all duration-300 hover:-left-5 transform -rotate-90 hover:bg-blue-600/90"
             >
               Ajuda
             </Button>
@@ -493,7 +493,13 @@ export const ListEdit = () => {
               <QtdList list={list1} />
 
               <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                <ChevronsRight size={22} onClick={handleShowQtdList} />
+                {qtdListAppear === '' &&
+                  <ChevronsRight size={22} onClick={handleShowQtdList} />
+                }
+                {qtdListAppear === 'left-4' &&
+                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
+                }
+
               </button>
 
             </div>
@@ -508,7 +514,13 @@ export const ListEdit = () => {
               <QtdList list={list2} />
 
               <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                <ChevronsRight size={22} onClick={handleShowQtdList} />
+                {qtdListAppear === '' &&
+                  <ChevronsRight size={22} onClick={handleShowQtdList} />
+                }
+                {qtdListAppear === 'left-4' &&
+                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
+                }
+
               </button>
 
             </div>
@@ -523,7 +535,13 @@ export const ListEdit = () => {
               <QtdList list={list3} />
 
               <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                <ChevronsRight size={22} onClick={handleShowQtdList} />
+                {qtdListAppear === '' &&
+                  <ChevronsRight size={22} onClick={handleShowQtdList} />
+                }
+                {qtdListAppear === 'left-4' &&
+                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
+                }
+
               </button>
 
             </div>
@@ -538,7 +556,13 @@ export const ListEdit = () => {
               <QtdList list={list4} />
 
               <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                <ChevronsRight size={22} onClick={handleShowQtdList} />
+                {qtdListAppear === '' &&
+                  <ChevronsRight size={22} onClick={handleShowQtdList} />
+                }
+                {qtdListAppear === 'left-4' &&
+                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
+                }
+
               </button>
 
             </div>
@@ -553,7 +577,13 @@ export const ListEdit = () => {
               <QtdList list={list5} />
 
               <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                <ChevronsRight size={22} onClick={handleShowQtdList} />
+                {qtdListAppear === '' &&
+                  <ChevronsRight size={22} onClick={handleShowQtdList} />
+                }
+                {qtdListAppear === 'left-4' &&
+                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
+                }
+
               </button>
 
             </div>
@@ -568,7 +598,13 @@ export const ListEdit = () => {
               <QtdList list={list6} />
 
               <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                <ChevronsRight size={22} onClick={handleShowQtdList} />
+                {qtdListAppear === '' &&
+                  <ChevronsRight size={22} onClick={handleShowQtdList} />
+                }
+                {qtdListAppear === 'left-4' &&
+                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
+                }
+
               </button>
 
             </div>
@@ -583,7 +619,13 @@ export const ListEdit = () => {
               <QtdList list={list7} />
 
               <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                <ChevronsRight size={22} onClick={handleShowQtdList} />
+                {qtdListAppear === '' &&
+                  <ChevronsRight size={22} onClick={handleShowQtdList} />
+                }
+                {qtdListAppear === 'left-4' &&
+                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
+                }
+
               </button>
 
             </div>
@@ -598,7 +640,13 @@ export const ListEdit = () => {
               <QtdList list={list8} />
 
               <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                <ChevronsRight size={22} onClick={handleShowQtdList} />
+                {qtdListAppear === '' &&
+                  <ChevronsRight size={22} onClick={handleShowQtdList} />
+                }
+                {qtdListAppear === 'left-4' &&
+                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
+                }
+
               </button>
 
             </div>

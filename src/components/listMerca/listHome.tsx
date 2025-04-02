@@ -120,7 +120,7 @@ export const ListHome = () => {
           <div className="w-full h-full flex justify-center overflow-y-auto pt-2">
             <Button
               onClick={handleHelpTutori}
-              className="absolute top-60 bg-blue-600/60 text-black -right-11 transition-all duration-300 text-base hover:-right-5 transform -rotate-90 hover:bg-blue-600/90"
+              className="absolute top-32 lg:top-60 bg-blue-600/40 lg:bg-blue-600/60 text-black -right-7 transition-all duration-300 text-base hover:-right-5 transform -rotate-90 hover:bg-blue-600/90"
               >
               Ajuda
             </Button>
