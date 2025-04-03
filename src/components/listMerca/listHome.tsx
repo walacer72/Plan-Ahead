@@ -14,10 +14,10 @@ import { SecondList6 } from "./setores/secondList6";
 import { SecondList7 } from "./setores/secondList7";
 import { SecondList8 } from "./setores/secondList8";
 import { SecondList3 } from "./setores/secondList3";
-import { SubTotalList } from "./subTotaList";
+import { useEffect } from "react";
 
 export type ShowTuto = 'flex' | 'hidden';
-
+type ButtonHelp = '-left-16' | '-left-9';
 
 export const ListHome = () => {
 
@@ -25,6 +25,8 @@ export const ListHome = () => {
   const [tutoList, setTutoList] = useState<ShowTuto>('hidden');
   const [tutoNameSet, setTutoNameSet] = useState<ShowTuto>('hidden');
   const [showTutorial, setShowTutorial] = useState<ShowTuto>('hidden');
+  const [buttonHelp, setButtonHelp] = useState<ButtonHelp>('-left-9');
+  const [showButtonHelp, setShowButtonHelp] = useState<ShowTuto>('flex')
 
   const { setQtdListReturn, setModalReturn, setQtdListAppear, setModalList, modalReturn, chaveKey, nameSetor, setFilterList } = useList()
 
@@ -37,6 +39,15 @@ export const ListHome = () => {
       setFlex('md:grid md:grid-cols-3');
     }
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setButtonHelp('-left-16');
+    }, 10000);
+    setTimeout(() => {
+      setShowButtonHelp('hidden');
+    }, 5000);
+  }, []);
 
   const handleReturnButtonModal = () => {
     setQtdListReturn('-left-64');
@@ -118,10 +129,29 @@ export const ListHome = () => {
         <div className="fixed left-0 right-0 bottom-2 py-4 px-2 top-28 flex justify-center bg-background z-40 rounded-t-3xl shadow-2xl mb-12">
 
           <div className="w-full h-full flex justify-center overflow-y-auto pt-2">
+            
+
+            <div className={`absolute ${showButtonHelp} items-center top-16 lg:top-40 left-10`}>
+              <div className="h-1 w-14 rounded-full bg-blue-50"></div>
+              <div className="p-3 w-44 bg-blue-50 rounded-3xl shadow-lg shadow-black">
+                
+                <div className="text-sm m-2 text-neutral-900">
+                  <h1 className="font-semibold text-base mb-2">Clicando aqui</h1>
+                  <p>Preparamos dicas de como utilizar seu app Plan ahead, quando tiver duvidas clique no botão ajuda</p>
+                  
+                </div>
+
+                <Button onClick={handleCloseTutori} className="bg-blue-500 rounded-full hover:bg-blue-400 self-start px-3 py-1 border-none text-xs text-white mt-2">
+                  ok, entendi
+                </Button>
+              </div>
+              
+            </div>
+
             <Button
               onClick={handleHelpTutori}
-              className="absolute top-32 lg:top-60 bg-blue-600/40 lg:bg-blue-600/60 text-black -right-7 transition-all duration-300 text-base hover:-right-5 transform -rotate-90 hover:bg-blue-600/90"
-              >
+              className={`absolute shadow-2xl shadow-black z-50 top-32 lg:top-60 bg-blue-600 lg:bg-blue-600 text-black ${buttonHelp} transition-all duration-300 text-base px-8 hover:-left-9 transform rotate-90 hover:bg-blue-600/90`}
+            >
               Ajuda
             </Button>
 

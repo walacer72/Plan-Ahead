@@ -437,10 +437,11 @@ export const ListEdit = () => {
 
             <Button
               onClick={handleHelpTutori}
-              className="absolute top-60 bg-blue-600/40 text-base text-black -left-11 transition-all duration-300 hover:-left-5 transform -rotate-90 hover:bg-blue-600/90"
+              className="absolute top-60 bg-blue-600 px-8 text-base text-black -left-16 transition-all duration-300 hover:-left-9 transform -rotate-90 hover:bg-blue-600/90"
             >
               Ajuda
             </Button>
+
             <ul className="w-full max-w-6xl">
 
               {chaveKey === 0 && list0.map(item => <ItemList key={item.id} item={item} />)}
