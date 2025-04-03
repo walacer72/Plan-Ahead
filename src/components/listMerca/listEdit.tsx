@@ -437,7 +437,7 @@ export const ListEdit = () => {
 
             <Button
               onClick={handleHelpTutori}
-              className="absolute top-60 bg-blue-600 px-8 text-base text-black -left-16 transition-all duration-300 hover:-left-9 transform -rotate-90 hover:bg-blue-600/90"
+              className="absolute top-60 bg-blue-400 px-8 text-base text-black -left-16 transition-all duration-300 hover:-left-9 transform -rotate-90 hover:bg-blue-500/90"
             >
               Ajuda
             </Button>
@@ -461,17 +461,17 @@ export const ListEdit = () => {
 
           {chaveKey === 0 &&
 
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-1 items-center ">
 
               <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
+                <ListX size={20} onClick={handleClearList} className="" />
               </button>
 
               <div className="ml-2">
                 <QtdList list={list0} />
               </div>
 
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
+              <button className="flex items-center justify-center rounded-full w-12 h-12 hover:text-primary-foreground">
                 {qtdListAppear === '' &&
                   <ChevronsRight size={22} onClick={handleShowQtdList} />
                 }
