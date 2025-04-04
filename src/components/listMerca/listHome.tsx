@@ -17,7 +17,7 @@ import { SecondList3 } from "./setores/secondList3";
 import { useEffect } from "react";
 
 export type ShowTuto = 'flex' | 'hidden';
-type ButtonHelp = '-left-16' | '-left-9';
+type ButtonHelp = '-left-11' | '-left-6';
 
 export const ListHome = () => {
 
@@ -26,7 +26,7 @@ export const ListHome = () => {
   const [tutoNameSet, setTutoNameSet] = useState<ShowTuto>('hidden');
   const [showTutorial, setShowTutorial] = useState<ShowTuto>('hidden');
   const [AvisoHelp, setAvisoHelp] = useState<ShowTuto>('flex');
-  const [buttonHelp, setButtonHelp] = useState<ButtonHelp>('-left-9');
+  const [buttonHelp, setButtonHelp] = useState<ButtonHelp>('-left-6');
   const [showButtonHelp, setShowButtonHelp] = useState<ShowTuto>('flex')
 
   const { setQtdListReturn, setModalReturn, setQtdListAppear, setModalList, modalReturn, chaveKey, nameSetor, setFilterList } = useList()
@@ -43,7 +43,7 @@ export const ListHome = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setButtonHelp('-left-16');
+      setButtonHelp('-left-11');
     }, 10000);
     setTimeout(() => {
       setShowButtonHelp('hidden');
@@ -136,9 +136,9 @@ export const ListHome = () => {
 
             <div className={`fixed top-0 bottom-0 left-0 right-0 bg-black/60 z-40 ${AvisoHelp}`}>
 
-              <div className={`absolute ${showButtonHelp} z-50 items-center top-36 md:top-64 left-11`}>
+              <div className={`absolute ${showButtonHelp} z-50 items-center top-36 md:top-64 left-9`}>
 
-                <div className="h-2 w-14 bg-blue-50 shadow-md shadow-gray-400"></div>
+                <div className="h-1 w-14 bg-blue-50 shadow-md shadow-gray-400"></div>
                 <div className="p-3 w-44 bg-blue-50 rounded-3xl shadow-lg shadow-gray-700">
 
                   <div className="text-sm m-2 text-neutral-900">
@@ -159,7 +159,7 @@ export const ListHome = () => {
 
             <Button
               onClick={handleHelpTutori}
-              className={`absolute shadow-2xl z-50 top-32 lg:top-60 bg-blue-400 lg:bg-blue-400 text-black ${buttonHelp} transition-all duration-300 px-8 text-base hover:-left-9 transform rotate-90 hover:bg-blue-500/90`}
+              className={`absolute shadow-2xl z-50 top-32 lg:top-60 bg-blue-400 lg:bg-blue-400 text-black ${buttonHelp} transition-all duration-300 hover:-left-6 transform rotate-90 hover:bg-blue-500/90`}
             >
               Ajuda
             </Button>
