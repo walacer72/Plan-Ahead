@@ -437,7 +437,7 @@ export const ListEdit = () => {
 
             <Button
               onClick={handleHelpTutori}
-              className="absolute top-60 bg-blue-400 px-8 text-base text-black -left-16 transition-all duration-300 hover:-left-9 transform -rotate-90 hover:bg-blue-500/90"
+              className="absolute top-60 bg-blue-400 text-base text-black -left-12 transition-all duration-300 hover:-left-6 transform -rotate-90 hover:bg-blue-500/90"
             >
               Ajuda
             </Button>
