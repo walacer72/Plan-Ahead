@@ -6,7 +6,7 @@ import { Forward, FilePenLine, Plus, CheckCheck, Minimize2, Maximize2 } from "lu
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { QtdList } from "../qtdList";
 import { useState } from "react";
-
+import { Tooltip } from "react-tooltip";
 
 type Inputs = {
   name: string;
@@ -23,7 +23,7 @@ export const SecondList0 = () => {
   } = useForm<Inputs>();
 
   const chaveShowEdit = 0;
-  const [showInput, setShowInput] = useState<boolean>(false);
+  const [mutateNameSector, setMutateNameSector] = useState<boolean>(false);
   const [secondMinimized, setSecondMinimized] = useState<boolean>(false);
 
   const { list0, handleUpdateNameSet, setChaveKey, setModalReturn, setModalList, nameSetor, toogleItem, setQtdListReturn } = useList();
@@ -31,7 +31,7 @@ export const SecondList0 = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     handleUpdateNameSet(data.name, chaveShowEdit);
-    setShowInput(!showInput);
+    setMutateNameSector(!mutateNameSector);
   }
 
   const handleShowEdit = () => {
@@ -50,13 +50,13 @@ export const SecondList0 = () => {
           <h1 className="">{nameSetor[chaveShowEdit]}</h1>
           <div className="flex items-center gap-2">
             <div className="">
-              {list0.length} {list0.length !== 0 && list0.length !== 1 ? 'itens': 'item'}
+              {list0.length} {list0.length !== 0 && list0.length !== 1 ? 'itens' : 'item'}
             </div>
-          
+
             <button
               onClick={() => setSecondMinimized(false)}
               className="w-8 h-8 flex items-center justify-center p-2 border bg-background rounded-full hover:text-background hover:bg-primary">
-              <Maximize2 size={18}/>
+              <Maximize2 size={18} />
             </button>
           </div>
         </div>
@@ -67,38 +67,65 @@ export const SecondList0 = () => {
         <div className={`w-full h-auto flex flex-col justify-between ${list0.length > 0 ? 'border border-blue-500' : 'border'} p-4 rounded-3xl bg-input`}>
           <h1>
 
-            {!showInput &&
+            {!mutateNameSector &&
+
               <div className="flex justify-between items-center">
                 <h1 className="p-2">{nameSetor[chaveShowEdit]}</h1>
                 <div className="flex gap-2">
+                  <>
+                    <Button
+                      variant={'default'}
+                      onClick={() => setMutateNameSector(!mutateNameSector)}
+                      className="size-4 p-4 bg-input rounded-full hover:text-background"
+                      data-tooltip-id="meu-tooltip" data-tooltip-content="Edite o nome do setor"
+                    >
+                      <FilePenLine />
+                    </Button>
 
-                  <Button variant={'default'} onClick={() => setShowInput(!showInput)} className="size-4 p-4 bg-input rounded-full hover:text-background"><FilePenLine /></Button>
+                    <Tooltip id="meu-tooltip" place="bottom-end" />
+                  </>
 
-                  <Button
-                    onClick={() => setSecondMinimized(true)}
-                    className="size-4 p-4 bg-input rounded-full hover:text-background md:hidden">
-                    <Minimize2 />
-                  </Button>
+                  <>
+                    <Button
+                      onClick={() => setSecondMinimized(true)}
+                      className="size-4 p-4 bg-input rounded-full hover:text-background md:hidden"
+                      data-tooltip-id="Tooltip-minimize" data-tooltip-content="Minimize o setor"
+                      >
+                      <Minimize2 />
+                    </Button>
+                    <Tooltip id="Tooltip-minimize" place="bottom-end" />
+                  </>
+
                 </div>
 
               </div>
             }
-            {showInput &&
+
+            {mutateNameSector &&
 
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex justify-between items-center">
+
                 <input
                   {...register('name', { maxLength: 20 })}
                   placeholder="Nova categoria"
-                  className={`bg-input placeholder:text-blue-400 text-blue-400 rounded-md p-2 animate-pulse outline-none ${errors.name?.type === 'maxLength' && 'text-red-400'}`}
+                  className={`bg-input max-w-32 placeholder:text-blue-400 text-blue-400 rounded-md p-2 animate-pulse outline-none ${errors.name?.type === 'maxLength' && 'text-red-400'}`}
 
                 />
-                <Button
-                  className="bg-background rounded-full p-4 size-4 hover:text-background"
-                  type="submit" value="enviar">
-                  <Forward className="" />
-                </Button>
+
+                <div>
+                  <Button
+                    className="bg-background rounded-full p-4 size-4 hover:text-background"
+                    type="submit"
+                    value="enviar"
+                    data-tooltip-id="Tooltip-nameSet" data-tooltip-content="Confirma novo nome"
+                    >
+                    <Forward className="" />
+                  </Button>
+                  <Tooltip id="Tooltip-nameSet" place="bottom-end" />
+                </div>
+
               </form>
 
             }
@@ -110,11 +137,18 @@ export const SecondList0 = () => {
               <div className="w-full h-full flex items-center justify-center">
                 <p className="text-center mt-6 animate-pulse p-8">Lista Vazia</p>
               </div>
+              <>
+                <Button
+                  onClick={handleShowEdit}
+                  variant={'default'}
+                  className="text-card rounded-3xl bg-blue-400 hover:bg-blue-400/80 transform transition-all duration-300"
+                  data-tooltip-id="Tooltip-lista" data-tooltip-content="Comece por aqui sua lista!"
+                >
+                  Fazer Lista
+                </Button>
+                <Tooltip id="Tooltip-lista" place="top" />
+              </>
 
-              <Button
-                onClick={handleShowEdit}
-                variant={'default'}
-                className="text-card rounded-3xl">Fazer Lista</Button>
             </div>
 
 

@@ -12,6 +12,7 @@ import { Button } from "../ui/button";
 import { ShowTuto } from "./listHome";
 import { ItemProduct } from "./itemProduct";
 import { List } from "../data";
+import { Tooltip } from "react-tooltip";
 
 
 type Inputs = {
@@ -195,14 +196,22 @@ export const ListEdit = () => {
                     onChange={(e) => setValueInput(e.target.value)}
                   />
 
-                  <button
-                    onClick={handleClickClose}
-                    type="button"
-                    className=" border-none rounded-full animate-bounce p-3 flex items-center justify-center"
-                  >
-                    {filterList === 'h-0' && <ChevronsDown className="size-5" />}
-                    {filterList === 'h-16' && <ChevronsUp className="size-5" />}
-                  </button>
+                  <>
+                    <button
+                      onClick={handleClickClose}
+                      type="button"
+                      className=" border-none rounded-full animate-bounce p-3 flex items-center justify-center"
+                      data-tooltip-id="Tooltip-listSetor" data-tooltip-content="Lista de Produtos do setor"
+                    >
+                      {filterList === 'h-0' &&
+                        <ChevronsDown className="size-5" />
+                      }
+                      {filterList === 'h-16' &&
+                        <ChevronsUp className="size-5" />
+                      }
+                    </button>
+                    <Tooltip id="Tooltip-listSetor" place="left" />
+                  </>
 
                 </label>
 
@@ -285,9 +294,16 @@ export const ListEdit = () => {
 
                   </label>
 
-                  <button className="" type="submit" value="enviar">
-                    <Forward className="mr-0  text-gray-500 size-6" />
-                  </button>
+                  <>
+                    <button
+                      type="submit"
+                      value="enviar"
+                      data-tooltip-id="Tooltip-Enter" data-tooltip-content="insira seu item na lista"
+                    >
+                      <Forward className="mr-0  text-gray-500 size-6" />
+                    </button>
+                    <Tooltip id="Tooltip-Enter" place="bottom-end" />
+                  </>
 
                 </div>
 
@@ -324,15 +340,22 @@ export const ListEdit = () => {
                     onChange={(e) => setValueInput(e.target.value)}
                   />
 
-                  <button
-                    onClick={handleClickClose}
-                    type="button"
-                    className=" border-none rounded-full animate-bounce p-3 flex items-center justify-center"
-                  >
-                    {filterList === 'h-0' && <ChevronsDown className="size-5" />}
-                    {filterList === 'h-16' && <ChevronsUp className="size-5" />}
-                  </button>
-
+                  <>
+                    <button
+                      onClick={handleClickClose}
+                      type="button"
+                      className=" border-none rounded-full animate-bounce p-3 flex items-center justify-center"
+                      data-tooltip-id="Tooltip-listSetor" data-tooltip-content="Lista de Produtos do setor"
+                    >
+                      {filterList === 'h-0' &&
+                        <ChevronsDown className="size-5" />
+                      }
+                      {filterList === 'h-16' &&
+                        <ChevronsUp className="size-5" />
+                      }
+                    </button>
+                    <Tooltip id="Tooltip-listSetor" place="left" />
+                  </>
                 </label>
 
                 <div className={`flex w-full h-0 transition-all ease-in-out duration-200 ${filterList} mt-4 px-3`}>
@@ -413,11 +436,16 @@ export const ListEdit = () => {
                     />
 
                   </label>
-
-                  <button className="" type="submit" value="enviar">
-                    <Forward className="mr-0  text-gray-500 size-6" />
-                  </button>
-
+                  <>
+                    <button
+                      type="submit"
+                      value="enviar"
+                      data-tooltip-id="Tooltip-Enter" data-tooltip-content="insira seu item na lista"
+                    >
+                      <Forward className="mr-0  text-gray-500 size-6" />
+                    </button>
+                    <Tooltip id="Tooltip-Enter" place="bottom-end" />
+                  </>
                 </div>
 
 
@@ -434,13 +462,16 @@ export const ListEdit = () => {
           }
 
           <div className="w-full h-full flex justify-center overflow-y-auto">
-
-            <Button
-              onClick={handleHelpTutori}
-              className="absolute top-60 bg-blue-400 text-base text-black -left-12 transition-all duration-300 hover:-left-6 transform -rotate-90 hover:bg-blue-500/90"
-            >
-              Ajuda
-            </Button>
+            <>
+              <Button
+                onClick={handleHelpTutori}
+                className="absolute top-60 bg-blue-400 text-base text-black -left-12 transition-all duration-300 hover:-left-6 transform -rotate-90 hover:bg-blue-500/90"
+                data-tooltip-id="Tooltip-Help" data-tooltip-content="Duvidas sobre o uso do app"
+              >
+                Ajuda
+              </Button>
+              <Tooltip id="Tooltip-Help" place="bottom-end" />
+            </>
 
             <ul className="w-full max-w-6xl">
 
@@ -459,202 +490,45 @@ export const ListEdit = () => {
 
         <div className={`fixed bottom-20 flex items-center bg-background transition-all duration-500 ease-in-out ${qtdListReturn} ${qtdListAppear} z-50 text-primary shadow-lg rounded-full border`}>
 
-          {chaveKey === 0 &&
+          <>
+            <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90"
+              data-tooltip-id="Tooltip-ClearList" data-tooltip-content="Exclua todos os itens da lista"
+            >
+              <ListX size={20} onClick={handleClearList} className="" />
+            </button>
+            <Tooltip id="Tooltip-ClearList" place="top-end" />
+          </>
 
-            <div className="flex gap-1 items-center ">
+          <div className="ml-2">
+            {chaveKey === 0 && <QtdList list={list0} />}
+            {chaveKey === 1 && <QtdList list={list1} />}
+            {chaveKey === 2 && <QtdList list={list2} />}
+            {chaveKey === 3 && <QtdList list={list3} />}
+            {chaveKey === 4 && <QtdList list={list4} />}
+            {chaveKey === 5 && <QtdList list={list5} />}
+            {chaveKey === 6 && <QtdList list={list6} />}
+            {chaveKey === 7 && <QtdList list={list7} />}
+            {chaveKey === 8 && <QtdList list={list8} />}
+          </div>
 
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={20} onClick={handleClearList} className="" />
-              </button>
+          <button className="flex items-center justify-center rounded-full w-12 h-12 hover:text-primary-foreground">
+            {qtdListAppear === '' &&
+              <>
+                <ChevronsRight
+                  size={22}
+                  onClick={handleShowQtdList}
+                  data-tooltip-id="Tooltip-MoneyValues" data-tooltip-content="Verifique o total da sua lista"
+                />
+                <Tooltip id="Tooltip-MoneyValues" place="top-start" />
+              </>
+            }
+            {qtdListAppear === 'left-4' &&
+              <ChevronsLeft size={22} onClick={handleShowQtdList} />
+            }
 
-              <div className="ml-2">
-                <QtdList list={list0} />
-              </div>
-
-              <button className="flex items-center justify-center rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
-          {chaveKey === 1 &&
-
-            <div className="flex gap-2 items-center">
-
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
-              </button>
-
-              <QtdList list={list1} />
-
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
-          {chaveKey === 2 &&
-            <div className="flex gap-2 items-center">
-
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
-              </button>
-
-              <QtdList list={list2} />
-
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
-          {chaveKey === 3 &&
-            <div className="flex gap-2 items-center">
-
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
-              </button>
-
-              <QtdList list={list3} />
-
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
-          {chaveKey === 4 &&
-            <div className="flex gap-2 items-center">
-
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
-              </button>
-
-              <QtdList list={list4} />
-
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
-          {chaveKey === 5 &&
-            <div className="flex gap-2 items-center">
-
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
-              </button>
-
-              <QtdList list={list5} />
-
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
-          {chaveKey === 6 &&
-            <div className="flex gap-2 items-center">
-
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
-              </button>
-
-              <QtdList list={list6} />
-
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
-          {chaveKey === 7 &&
-            <div className="flex gap-2 items-center">
-
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
-              </button>
-
-              <QtdList list={list7} />
-
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
-          {chaveKey === 8 &&
-            <div className="flex gap-2 items-center">
-
-              <button className="flex items-center justify-center border rounded-full w-12 pl-1 bg-primary text-background h-12 hover:bg-primary/90">
-                <ListX size={22} onClick={handleClearList} className="" />
-              </button>
-
-              <QtdList list={list8} />
-
-              <button className="flex items-center justify-center  rounded-full w-12 h-12 hover:text-primary-foreground">
-                {qtdListAppear === '' &&
-                  <ChevronsRight size={22} onClick={handleShowQtdList} />
-                }
-                {qtdListAppear === 'left-4' &&
-                  <ChevronsLeft size={22} onClick={handleShowQtdList} />
-                }
-
-              </button>
-
-            </div>
-          }
+          </button>
 
         </div>
-
 
       </div>
     </div>

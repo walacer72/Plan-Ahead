@@ -44,8 +44,6 @@ type ContextType = {
   handleUpdateNameSet: (newSet: string, chaveEdit: number) => void;
   chaveEdit: number;
   setChaveEdit: (chave: number) => void;
-  showInput: boolean;
-  setShowInput: (Input: boolean) => void;
   handleUpQuantity: (id: number, n: number) => void;
   handleClearList: () => void;
   showSubTotal: SubTotal;
@@ -77,7 +75,6 @@ export const ValueListProvider = ({ children }: { children: ReactNode }) => {
   const [chaveKey, setChaveKey] = useState<Number>(null);
   const [modalList, setModalList] = useState<Top>('h-0');
   const [modalReturn, setModalReturn] = useState<Left>('-left-48')
-  const [showInput, setShowInput] = useState<boolean>(false);
   const [showSubTotal, setShowSubTotal] = useState<SubTotal>('-bottom-6');
   const [qtdListReturn, setQtdListReturn] = useState<ReturnQtd>('-left-64');
   const [qtdListAppear, setQtdListAppear] = useState<QtdAppear>('')
@@ -801,7 +798,7 @@ export const ValueListProvider = ({ children }: { children: ReactNode }) => {
 
 
   return (
-    <ValueListContext.Provider value={{ list0, list1, list2, list3, list4, list5, list6, list7, list8, modalList, nameSetor, setNameSetor, setModalList, modalReturn, setModalReturn, chaveKey, setChaveKey, editText, setEditText, handleAddText, handleDeletText, handleEditText, toogleItem, handleUpdateTextInput, chaveEdit, setChaveEdit, setShowInput, showInput, showSubTotal, setShowSubTotal, handleUpdateNameSet, handleUpQuantity, handleClearList, dataProduct, setDataProduct, valueInput, setValueInput, filterList, setFilterList, handleAddEqual, qtdListReturn, setQtdListReturn, qtdListAppear, setQtdListAppear }}>
+    <ValueListContext.Provider value={{ list0, list1, list2, list3, list4, list5, list6, list7, list8, modalList, nameSetor, setNameSetor, setModalList, modalReturn, setModalReturn, chaveKey, setChaveKey, editText, setEditText, handleAddText, handleDeletText, handleEditText, toogleItem, handleUpdateTextInput, chaveEdit, setChaveEdit ,showSubTotal, setShowSubTotal, handleUpdateNameSet, handleUpQuantity, handleClearList, dataProduct, setDataProduct, valueInput, setValueInput, filterList, setFilterList, handleAddEqual, qtdListReturn, setQtdListReturn, qtdListAppear, setQtdListAppear }}>
       {children}
     </ValueListContext.Provider>
   )

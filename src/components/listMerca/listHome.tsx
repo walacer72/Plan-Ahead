@@ -15,6 +15,7 @@ import { SecondList7 } from "./setores/secondList7";
 import { SecondList8 } from "./setores/secondList8";
 import { SecondList3 } from "./setores/secondList3";
 import { useEffect } from "react";
+import { Tooltip } from "react-tooltip";
 
 export type ShowTuto = 'flex' | 'hidden';
 type ButtonHelp = '-left-11' | '-left-6';
@@ -74,7 +75,7 @@ export const ListHome = () => {
   const handleTutori = () => {
     setTutoList('hidden');
     setTutoNameSet('flex');
-    
+
   }
 
   const handleCloseTutori = () => {
@@ -86,7 +87,7 @@ export const ListHome = () => {
   return (
     <div className="">
 
-      <div className={`fixed top-0 bottom-0 left-0 right-0 bg-black/60 z-40 ${showTutorial} justify-center items-center`}>
+      <div className={`fixed top-0 bottom-0 left-0 right-0 bg-black/80 z-40 ${showTutorial} justify-center items-center`}>
 
         <div className={`absolute text-sm text-neutral-900 top-24 left-2 md:right-0 md:left-44 md:bottom-0 w-56 h-60 ${tutoList} flex-col rounded-l-3xl rounded-t-3xl border bg-white p-4 shadow-gray-600 shadow-2xl`}>
 
@@ -124,7 +125,7 @@ export const ListHome = () => {
       </div>
 
       <div className="relative flex-col justify-center items-center z-0">
-        <h1 className={`fixed top-0 right-0 left-0 bg-input z-0 h-32 flex justify-end p-4 px-8 items-center lg:justify-center text-xl font-bold lg:text-3xl gap-1`}>
+        <h1 className={`fixed top-0 right-0 left-0 bg-gradient-to-l from-background to-blue-400 z-0 h-32 flex justify-end p-4 px-8 items-center lg:justify-center text-xl font-bold lg:text-3xl gap-1`}>
 
           <p>Lista de Mercado</p>
           <ShoppingBag size={22} className=" lg:size-8 lg:m-0 text-blue-500" />
@@ -134,7 +135,7 @@ export const ListHome = () => {
 
           <div className="w-full h-full flex justify-center overflow-y-auto pt-2">
 
-            <div className={`fixed top-0 bottom-0 left-0 right-0 bg-black/60 z-40 ${AvisoHelp}`}>
+            <div className={`fixed top-0 bottom-0 left-0 right-0 bg-black/80 z-40 ${AvisoHelp}`}>
 
               <div className={`absolute ${showButtonHelp} z-50 items-center top-36 md:top-64 left-9`}>
 
@@ -156,13 +157,17 @@ export const ListHome = () => {
 
             </div>
 
+            <>
+              <Button
+                onClick={handleHelpTutori}
+                className={`absolute shadow-2xl z-50 top-32 lg:top-60 bg-blue-400 lg:bg-blue-400 text-black ${buttonHelp} transition-all duration-300 hover:-left-6 transform rotate-90 hover:bg-blue-500/90`}
+                data-tooltip-id="Tooltip-Help" data-tooltip-content="Duvidas sobre o uso do app"
+              >
+                Ajuda
+              </Button>
+              <Tooltip id="Tooltip-Help" place="bottom-end" />
+            </>
 
-            <Button
-              onClick={handleHelpTutori}
-              className={`absolute shadow-2xl z-50 top-32 lg:top-60 bg-blue-400 lg:bg-blue-400 text-black ${buttonHelp} transition-all duration-300 hover:-left-6 transform rotate-90 hover:bg-blue-500/90`}
-            >
-              Ajuda
-            </Button>
 
             <div className="flex ml-0 md:ml-[3.5rem] w-full max-w-4xl">
               <div className={`w-full max-w-4xl flex flex-col ${flex} gap-4 px-2`}>
@@ -203,6 +208,7 @@ export const ListHome = () => {
           <Button
             onClick={handleReturnButtonModal}
             className="flex items-center bg-background border p-4 py-2 gap-2 rounded-full hover:bg-neutral-900"
+             data-tooltip-id="Tooltip-ReturnList" data-tooltip-content="Retorne à lista de setores"
           >
 
             <Undo2 size={14} />
@@ -235,6 +241,7 @@ export const ListHome = () => {
             }
 
           </Button>
+          <Tooltip id="Tooltip-ReturnList" place="bottom-start" />
         </div>
 
 

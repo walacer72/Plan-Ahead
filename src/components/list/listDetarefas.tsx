@@ -6,6 +6,7 @@ import { Forward, Pencil, Delete, CheckCheck, CircleCheckBig, ListX } from 'luci
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ItemList } from "@/types/itemList";
 import { Button } from "../ui/button";
+import { Tooltip } from "react-tooltip";
 
 type Inputs = {
   text: string;
@@ -25,10 +26,10 @@ export const List = () => {
   } = useForm<Inputs>();
 
   setFocus("text");
-    useEffect(() => {
-      setFocus("text"); // Define o foco automaticamente no campo "text"
-    }, [setFocus]);
-  
+  useEffect(() => {
+    setFocus("text"); // Define o foco automaticamente no campo "text"
+  }, [setFocus]);
+
 
   const [list, setList] = useState<ItemList[]>([]);
   const [editText, setEditText] = useState(false);
@@ -112,7 +113,7 @@ export const List = () => {
       <div className="fixed right-0 left-0 top-0 flex flex-col items-center justify-center z-0 bg-input p-8">
 
         <h1 className="font-bold text-3xl flex items-center">Lista de tarefas<CircleCheckBig size={28} className="text-blue-500" /></h1>
-        
+
         {editText &&
           <div className="flex flex-col w-full max-w-6xl">
             <form
@@ -125,9 +126,17 @@ export const List = () => {
                 className="rounded-tl-md rounded-bl-md w-full p-3 outline-none bg-input placeholder:text-blue-500 animate-pulse"
               />
 
-              <button type="submit" value="enviar">
-                <Forward className="mr-3" />
-              </button>
+              <>
+                <button
+                  className="mr-3"
+                  type="submit"
+                  value="enviar"
+                  data-tooltip-id="Tooltip-Enter" data-tooltip-content="insira seu item na lista"
+                >
+                  <Forward className="mr-0  text-gray-500 size-6" />
+                </button>
+                <Tooltip id="Tooltip-Enter" place="bottom-end" />
+              </>
 
             </form>
             <div className="h-4 text-slate-400">
@@ -150,9 +159,17 @@ export const List = () => {
                 className="rounded-tl-md rounded-bl-md w-full p-3 outline-none bg-background hover:opacity-80 "
               />
 
-              <button type="submit" className="bg-background" value="enviar">
-                <Forward className="mr-3 bg-background text-gray-400" />
-              </button>
+              <>
+                <button
+                  className="mr-3"
+                  type="submit"
+                  value="enviar"
+                  data-tooltip-id="Tooltip-Enter" data-tooltip-content="insira seu item na lista"
+                >
+                  <Forward className="mr-0  text-gray-500 size-6" />
+                </button>
+                <Tooltip id="Tooltip-Enter" place="bottom-end" />
+              </>
 
             </form>
             <div className="h-4 text-slate-400">
@@ -179,18 +196,30 @@ export const List = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-
-                  <Delete
-                    className="text-primary-foreground size-6 hover:opacity-80 my-2"
-                    onClick={() => handleDeletText(item.id)} />
-
-                  <Pencil
-                    className="text-primary-foreground size-5 hover:opacity-80 my-2"
-                    onClick={() => handleEditText(item.id)} />
-
-                  <CheckCheck
-                    className={`size-7 hover:opacity-80 my-2 ${item.done ? 'text-blue-600' : 'text-primary-foreground'}`}
-                    onClick={() => toogleItem(item.id)} />
+                  <>
+                    <Delete
+                      className="text-primary-foreground size-6 hover:opacity-80 my-2"
+                      onClick={() => handleDeletText(item.id)}
+                      data-tooltip-id="Tooltip-Delet" data-tooltip-content="Excluir esse item"
+                    />
+                    <Tooltip id="Tooltip-Delet" place="bottom-end" />
+                  </>
+                  <>
+                    <Pencil
+                      className="text-primary-foreground size-5 hover:opacity-80 my-2"
+                      onClick={() => handleEditText(item.id)}
+                      data-tooltip-id="Tooltip-Edit" data-tooltip-content="Edite esse item"
+                    />
+                    <Tooltip id="Tooltip-Edit" place="bottom-end" />
+                  </>
+                  <>
+                    <CheckCheck
+                      className={`size-7 hover:opacity-80 my-2 ${item.done ? 'text-blue-600' : 'text-primary-foreground'}`}
+                      onClick={() => toogleItem(item.id)}
+                      data-tooltip-id="Tooltip-Done" data-tooltip-content="Marque esse item como concluído"
+                    />
+                    <Tooltip id="Tooltip-Done" place="bottom-end" />
+                  </>
                 </div>
 
               </li>
@@ -200,9 +229,16 @@ export const List = () => {
         </div>
       </div>
 
-      <Button onClick={() => setList([])} className="fixed left-4 flex items-center bottom-20 bg-input rounded-full z-50 hover:text-background">
-        <p className="hidden md:flex">Limpar lista</p><ListX className="" /> </Button>
-
+      <div className="fixed left-4 bottom-20 z-50">
+        <Button
+          onClick={() => setList([])}
+          className=" flex items-center  bg-input rounded-full  hover:text-background"
+          data-tooltip-id="Tooltip-ClearList" data-tooltip-content="Exclua todos os itens da lista"
+        >
+          <p className="hidden md:flex">Limpar lista</p><ListX />
+        </Button>
+        <Tooltip id="Tooltip-ClearList" place="right" />
+      </div>
     </div >
 
 
