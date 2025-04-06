@@ -241,7 +241,7 @@ export const ListHome = () => {
             }
 
           </Button>
-          <Tooltip id="Tooltip-ReturnList" place="right" />
+          <Tooltip id="Tooltip-ReturnList" place="right" className="hidden md:flex" />
         </div>
 
 
