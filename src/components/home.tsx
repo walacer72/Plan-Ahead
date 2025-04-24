@@ -32,7 +32,7 @@ export const HomePage = () => {
                 onClick={() => router.push('./listMercado')}>Lista de Mercado</button>
               <button
                 className="button rounded-md"
-                onClick={() => router.push('./listAgenda')}>laneje seu DiaP</button>
+                onClick={() => router.push('./listAgenda')}>Planeje seu Dia</button>
             </div>
           </div>
           <p className="w-full md:pl-20 max-w-2xl text-center md:text-start mt-6 md:mt-24 text-gray-200">Organize suas compras e tarefas do dia a dia de forma simples e eficiente! Com o Plan Ahead, você tem um assistente inteligente na palma da mão para planejar suas listas de mercado e suas tarefas diárias.</p>
