@@ -140,8 +140,8 @@ export const SecondList8 = () => {
               <>
                 <Button
                   onClick={handleShowEdit}
-                  variant={'default'}
-                  className="text-card rounded-3xl bg-blue-400 hover:bg-blue-400/80 transform transition-all duration-300"
+                  variant={'secondary'}
+                  className="text-primary rounded-3xl transform transition-all duration-300"
                   data-tooltip-id="Tooltip-lista" data-tooltip-content="Comece por aqui sua lista!"
                 >
                   Fazer Lista

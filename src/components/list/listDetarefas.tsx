@@ -62,6 +62,7 @@ export const List = () => {
       if (newList[i].id === id) {
         if (editText === false) {
           setEditText(true);
+          setChaveKey(id);
 
         } else {
           setEditText(false);
